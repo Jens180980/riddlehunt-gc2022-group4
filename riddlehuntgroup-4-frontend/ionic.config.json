@@ -1,0 +1,7 @@
+{
+  "name": "riddlehuntgroup4-frontend",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
