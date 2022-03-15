@@ -25,8 +25,8 @@ class CategoryService {
   }
 
   async getAll() {
-    const categories = await Category.findAll();
-    return categories;
+    // const categories = await Category.findAll();
+    return Category.findAll();
   }
 
   async getById(id) {

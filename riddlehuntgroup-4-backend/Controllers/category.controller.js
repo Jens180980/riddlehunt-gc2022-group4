@@ -13,14 +13,21 @@ exports.create = async (req, res) => {
 };
 
 exports.getAll = async (req, res) => {
-  try {
-    const categories = await categoryService.getAll();
-    res.send(categories);
-  } catch (error) {
-    res
-      .status(500)
-      .send(error.message || "An error occured while retrieving the places.");
-  }
+  console.log("sofdsdofj");
+  categoryService
+    .getAll()
+    .then((categories) => {
+      console.log(categories, "a;ldsjf;ladsjflajdslfajsd");
+      res.status(200).send(categories);
+    })
+    .catch((error) => {
+      res
+        .status(500)
+        .send(error.message || "An error occured while retrieving the places.");
+    });
+  //   const categories = categoryService.getAll().then();
+  //   res.send(categories);
+  // }
 };
 
 exports.getById = async (req, res) => {

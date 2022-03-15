@@ -1,6 +1,8 @@
 const db = require("../Models");
 const User = db.user;
 
+const bcrypt = require("bcrypt");
+
 class UserService {
   static UserService = null;
 
@@ -15,8 +17,9 @@ class UserService {
       where: { email: newUser.email },
       defaults: {
         name: newUser.name,
-        password: newUser.password,
+        password: bcrypt.hashSync(newUser.password, 5),
         proile_picture: newUser.profile_picture,
+        role: "user",
       },
     });
 
@@ -34,6 +37,15 @@ class UserService {
 
   async getById(id) {
     const user = User.findByPk(id);
+    return user;
+  }
+
+  async getByEmail(email) {
+    const user = User.findOne({
+      where: {
+        email,
+      },
+    });
     return user;
   }
 

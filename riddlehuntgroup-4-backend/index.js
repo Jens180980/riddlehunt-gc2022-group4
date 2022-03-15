@@ -23,5 +23,6 @@ require("./Routes/category.routes")(app);
 require("./Routes/place.routes")(app);
 require("./Routes/route.routes")(app);
 require("./Routes/user.routes")(app);
+require("./Routes/auth.routes")(app);
 
 app.listen(5000, () => console.log("Server running at http://localhost:5000"));
