@@ -1,25 +1,9 @@
-const db = require("../Models");
-
-const Place = db.place;
+const placeService = require("../Services/place.service").getPlaceService();
 
 exports.create = async (req, res) => {
-  if (!req.name) {
-  }
   try {
-    const [place, didNotExist] = await Place.findOrCreate({
-      where: { name: req.body.name },
-      defaults: {
-        description: req.body.description,
-        location: req.body.location,
-        image: req.body.image,
-      },
-    });
-
-    const response = didNotExist
-      ? { message: `Place created successfully`, place }
-      : { message: `Place already exist.` };
-
-    res.send(response);
+    const message = placeService.create(req.body);
+    res.send(message);
   } catch (error) {
     res
       .status(500)
@@ -29,7 +13,7 @@ exports.create = async (req, res) => {
 
 exports.getAll = async (req, res) => {
   try {
-    const places = await Place.findAll();
+    const places = placeService.getAll();
     res.send(places);
   } catch (error) {
     res
@@ -44,8 +28,8 @@ exports.getById = async (req, res) => {
   }
 
   try {
-    const places = await Place.findByPk(req.params.id);
-    res.send(places);
+    const place = await placeService.getById(req.params.id);
+    res.send(place);
   } catch (error) {
     res
       .status(500)
@@ -58,17 +42,7 @@ exports.getById = async (req, res) => {
 
 exports.update = async (req, res) => {
   try {
-    const updateStatus = await Place.update(req.body, {
-      where: {
-        id: req.params.id,
-      },
-    });
-
-    const message =
-      updateStatus == 1
-        ? "Place updated successfully"
-        : "Nothing to update or place not found";
-
+    const message = await placeService.update(req.body);
     res.send(message);
   } catch (error) {
     res
@@ -79,13 +53,7 @@ exports.update = async (req, res) => {
 
 exports.delete = async (req, res) => {
   try {
-    const deleteStatus = await Place.destroy({
-      where: { id: req.params.id },
-    });
-
-    const message =
-      deleteStatus == 1 ? "Place deleted successfully." : "Place not found.";
-
+    const message = placeService.delete(id);
     res.send(message);
   } catch (error) {
     res
