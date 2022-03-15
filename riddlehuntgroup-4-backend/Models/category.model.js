@@ -3,6 +3,8 @@ module.exports = (sequelize, Sequelize) => {
     "category",
     {
       name: { type: Sequelize.STRING },
+      description: { type: Sequelize.STRING },
+      icon: { type: Sequelize.STRING },
     },
     {
       timestamps: false,
@@ -12,6 +14,7 @@ module.exports = (sequelize, Sequelize) => {
 
   Category.associate = (models) => {
     Category.hasMany(models.route);
+    Category.belongsTo(models.category);
   };
 
   return Category;

@@ -25,8 +25,8 @@ class CategoryService {
   }
 
   async getAll() {
-    // const categories = await Category.findAll();
-    return Category.findAll();
+    const categories = await Category.findAll();
+    return categories;
   }
 
   async getById(id) {
@@ -34,10 +34,10 @@ class CategoryService {
     return categories;
   }
 
-  async getRoutesOfACategory(categoryId) {
-    const route = db.Route;
+  async getPlacesOfACategory(categoryId) {
+    const place = db.Place;
     const category = await Category.findByPk(categoryId, {
-      include: { route },
+      include: { place },
     });
 
     return category;
