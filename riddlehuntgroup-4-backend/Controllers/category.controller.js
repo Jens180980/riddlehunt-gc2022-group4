@@ -1,18 +1,10 @@
-const db = require("../Models");
-
-const Category = db.category;
+const categoryService =
+  require("../Services/category.service").getCategoryService();
 
 exports.create = async (req, res) => {
   try {
-    const [category, didNotExist] = await Category.findOrCreate({
-      where: { name: req.body.name },
-    });
-
-    const response = didNotExist
-      ? { message: `Category created successfully`, category }
-      : { message: `Category already exist.` };
-
-    res.send(response);
+    const message = categoryService.create(req.body);
+    res.send(message);
   } catch (error) {
     res
       .status(500)
@@ -22,7 +14,7 @@ exports.create = async (req, res) => {
 
 exports.getAll = async (req, res) => {
   try {
-    const categories = await Category.findAll();
+    const categories = await categoryService.getAll().then();
     res.send(categories);
   } catch (error) {
     res
@@ -37,7 +29,7 @@ exports.getById = async (req, res) => {
   }
 
   try {
-    const categories = await Category.findByPk(req.params.id);
+    const categories = await categoryService.getById(req.params.id);
     res.send(categories);
   } catch (error) {
     res
@@ -49,12 +41,11 @@ exports.getById = async (req, res) => {
   }
 };
 
-exports.getRoutesOfACategory = async (req, res) => {
+exports.getPlacesOfACategory = async (req, res) => {
   try {
-    const route = db.Route;
-    const category = await Category.findByPk(req.body.categoryId, {
-      include: { route },
-    });
+    const category = await categoryService.getPlacesOfACategory(
+      req.body.categoryId
+    );
     res.send(category);
   } catch (error) {
     res
@@ -65,16 +56,7 @@ exports.getRoutesOfACategory = async (req, res) => {
 
 exports.update = async (req, res) => {
   try {
-    const updateStatus = await Category.update(req.body, {
-      where: {
-        id: req.params.id,
-      },
-    });
-
-    const message =
-      updateStatus == 1
-        ? "Category updated successfully"
-        : "Nothing to update or category not found";
+    const message = await categoryService.update(req.body);
 
     res.send(message);
   } catch (error) {
@@ -86,15 +68,7 @@ exports.update = async (req, res) => {
 
 exports.delete = async (req, res) => {
   try {
-    const deleteStatus = await Category.destroy({
-      where: { id: req.params.id },
-    });
-
-    const message =
-      deleteStatus == 1
-        ? "Category deleted successfully"
-        : "Category not found";
-
+    const message = categoryService.delete(req.params.id);
     res.send(message);
   } catch (error) {
     res

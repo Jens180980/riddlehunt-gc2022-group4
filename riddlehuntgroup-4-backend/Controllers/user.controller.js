@@ -1,21 +1,8 @@
-const db = require("../Models");
-
-const User = db.user;
+const userService = require("../Services/user.service").getUserService();
 
 exports.create = async (req, res) => {
   try {
-    const [user, didNotExist] = await User.findOrCreate({
-      where: { email: req.body.email },
-      defaults: {
-        name: req.body.name,
-        password: req.body.password,
-        proile_picture: req.body.profile_picture,
-      },
-    });
-
-    const response = didNotExist
-      ? { message: `Route created successfully`, user }
-      : { message: `Route with same name already exist.` };
+    const response = await userService.create(req.body);
 
     res.send(response);
   } catch (error) {
@@ -27,7 +14,7 @@ exports.create = async (req, res) => {
 
 exports.getAll = async (req, res) => {
   try {
-    const users = await User.findAll();
+    const users = await userService.getAll();
     res.send(users);
   } catch (error) {
     res
@@ -42,7 +29,7 @@ exports.getById = async (req, res) => {
   }
 
   try {
-    const user = await User.findByPk(req.params.id);
+    const user = userService.getById(req.params.id);
     res.send(user);
   } catch (error) {
     res
@@ -56,11 +43,7 @@ exports.getById = async (req, res) => {
 
 exports.update = async (req, res) => {
   try {
-    const updateStatus = await User.update(req.body, {
-      where: {
-        id: req.params.id,
-      },
-    });
+    const updateStatus = userService.update(req.body);
 
     const message =
       updateStatus == 1
@@ -77,9 +60,7 @@ exports.update = async (req, res) => {
 
 exports.delete = async (req, res) => {
   try {
-    const deleteStatus = await User.destroy({
-      where: { id: req.params.id },
-    });
+    const deleteStatus = userService.delete(req.body.userId);
 
     const message =
       deleteStatus == 1 ? "User deleted successfully." : "User not found.";
@@ -98,10 +79,7 @@ exports.delete = async (req, res) => {
 ////////////////////////////////////////////////
 exports.getUserPlaces = async (req, res) => {
   try {
-    const user = await user.findByPk(req.params.id);
-
-    const places = user.getPlaces();
-
+    const places = await userService.getUserPlaces(req.params.id);
     res.send(places);
   } catch (error) {
     res
@@ -112,9 +90,7 @@ exports.getUserPlaces = async (req, res) => {
 
 exports.getUserRoutes = async (req, res) => {
   try {
-    const user = await user.findByPk(req.params.id);
-
-    const routes = user.getRoutes();
+    const routes = userService.getUserRoutes(req.params.id);
 
     res.send(routes);
   } catch (error) {
@@ -124,10 +100,41 @@ exports.getUserRoutes = async (req, res) => {
   }
 };
 
-exports.addAPlaceVisited = async (req, res) => {};
+exports.addAPlaceVisited = async (req, res) => {
+  try {
+    const message = await userService.addAPlaceVisited(
+      req.body.userId,
+      req.body.userId,
+      req.body.rating
+    );
+    res.send(message);
+  } catch (error) {
+    res
+      .status(500)
+      .send(
+        error.message || `An error occured while adding the place to the route.`
+      );
+  }
+};
 
-exports.addARoute = async (req, res) => {};
+exports.addARoute = async (req, res) => {
+  try {
+    const message = userService.addARoute(
+      req.body.userId,
+      req.body.routeId,
+      req.body.rating
+    );
+    res.send(message);
+  } catch (error) {
+    res
+      .status(500)
+      .send(
+        error.message || `An error occured while adding the place to the route.`
+      );
+  }
+};
 
+// is rating possible at any point ???
 exports.ratePlace = async (req, res) => {
   // 1 - verify if place has been visited
   // 2 - add rating

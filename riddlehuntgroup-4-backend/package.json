@@ -8,11 +8,19 @@
     "start": "nodemon ./index.js"
   },
   "dependencies": {
+    "@hapi/boom": "^9.1.4",
+    "bcrypt": "^5.0.1",
+    "boom": "^7.3.0",
     "cors": "^2.8.5",
-    "dotenv": "^14.2.0",
+    "dotenv": "^14.3.2",
     "express": "^4.17.2",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.1",
     "mysql": "^2.18.1",
     "mysql2": "^2.3.3",
+    "passport": "^0.5.2",
+    "passport-http": "^0.3.0",
+    "passport-jwt": "^4.0.0",
     "sequelize": "^6.13.0"
   },
   "keywords": [],

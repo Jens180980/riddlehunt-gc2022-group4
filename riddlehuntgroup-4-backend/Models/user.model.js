@@ -6,6 +6,7 @@ module.exports = (sequelize, Sequelize) => {
       email: { type: Sequelize.STRING },
       password: { type: Sequelize.STRING },
       profile_picture: { type: Sequelize.STRING },
+      role: { type: Sequelize.STRING },
     },
     {
       timestamps: false,
