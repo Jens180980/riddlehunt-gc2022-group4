@@ -1,8 +1,13 @@
 // Ionic components import
-import { IonApp, setupIonicReact } from "@ionic/react";
+import { Redirect, Route } from 'react-router-dom';
+import { IonApp, setupIonicReact, IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel, IonBadge, IonRouterOutlet } from "@ionic/react";
+import { IonReactRouter } from '@ionic/react-router';
+import { busOutline, ellipse, homeOutline, mapOutline, personCircleOutline, square, triangle } from 'ionicons/icons';
+
 
 // Pages import
 import Home from "./components/Pages/Home/Home";
+import { Navigation } from "./components/Partials/Navigation/Navigation";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -16,7 +21,7 @@ setupIonicReact();
 
 const App: React.FC = () => (
   <IonApp>
-    <Home />
+    <Navigation />
   </IonApp>
 );
 
