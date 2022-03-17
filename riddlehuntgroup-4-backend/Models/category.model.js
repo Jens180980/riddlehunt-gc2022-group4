@@ -13,8 +13,7 @@ module.exports = (sequelize, Sequelize) => {
   );
 
   Category.associate = (models) => {
-    Category.hasMany(models.route);
-    Category.belongsTo(models.category);
+    Category.hasMany(models.place);
   };
 
   return Category;
