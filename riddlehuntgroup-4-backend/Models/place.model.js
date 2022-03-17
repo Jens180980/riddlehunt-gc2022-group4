@@ -4,7 +4,8 @@ module.exports = (sequelize, Sequelize) => {
     {
       name: { type: Sequelize.STRING },
       description: { type: Sequelize.STRING },
-      location: { type: Sequelize.STRING },
+      latitude: { type: Sequelize.STRING },
+      longitude: { type: Sequelize.STRING },
       image: { type: Sequelize.STRING },
     },
     {
@@ -17,6 +18,7 @@ module.exports = (sequelize, Sequelize) => {
     Place.belongsToMany(models.route, {
       through: models.route_places,
     });
+    Place.belongsTo(models.category);
   };
 
   return Place;

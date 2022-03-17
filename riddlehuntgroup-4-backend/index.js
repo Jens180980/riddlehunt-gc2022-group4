@@ -3,13 +3,18 @@ const db = require("./models");
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const data = require("./Config/data");
 
 const corsOption = {
   //   origin: "",
 };
 
-db.sequelize.sync().then(() => {
+db.sequelize.sync({ force: true }).then(() => {
   console.log("Sync db");
+  db.category.bulkCreate(data.category);
+  db.route.bulkCreate(data.route);
+  db.place.bulkCreate(data.place);
+  db.route_places.bulkCreate(data.route_places);
 });
 
 const app = express();
