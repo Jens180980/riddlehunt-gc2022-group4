@@ -24,6 +24,8 @@ import Transport from './components/Pages/Transport/Transport';
 setupIonicReact();
 
 const App: React.FC = () => {
+  const currentUrl = window.location.pathname;
+
   const Routes = [
     {
       key: '0',
@@ -71,6 +73,114 @@ const App: React.FC = () => {
 
   let buttonToDisplay = []
 
+  switch (currentUrl) {
+    case "/map": buttonToDisplay.push(
+      {
+        key: '4',
+        tab: 'list',
+        path: '/list',
+        icon: listOutline,
+        label: 'List'
+      },
+      {
+        key: '1',
+        tab: 'home',
+        path: '/home',
+        icon: homeOutline,
+        label: 'Home'
+      },
+      {
+        key: '2',
+        tab: 'transport',
+        path: '/transport',
+        icon: busOutline,
+        label: 'Transport'
+    }
+    )
+    break;
+    case "/home": buttonToDisplay.push(
+      {
+        key: '0',
+        tab: 'map',
+        path: '/map',
+        icon: mapOutline,
+        label: 'Map'
+      },
+      {
+          key: '3',
+          tab: 'profile',
+          path: '/profile',
+          icon: personCircleOutline,
+          label: 'Profile'
+      },
+      {
+          key: '2',
+          tab: 'transport',
+          path: '/transport',
+          icon: busOutline,
+          label: 'Transport'
+      }
+    )
+    break;
+    case "/profile": buttonToDisplay.push(
+      {
+        key: '5',
+        tab: 'home',
+        path: '/home',
+        icon: closeOutline,
+        label: 'Cancel'
+      }
+    )
+    break;
+    case "/list": buttonToDisplay.push(
+      {
+        key: '0',
+        tab: 'map',
+        path: '/map',
+        icon: mapOutline,
+        label: 'Map'
+      },
+      {
+          key: '1',
+          tab: 'home',
+          path: '/home',
+          icon: homeOutline,
+          label: 'Home'
+      },
+      {
+          key: '2',
+          tab: 'transport',
+          path: '/transport',
+          icon: busOutline,
+          label: 'Transport'
+      }
+    )
+    break;
+    case "/transport": buttonToDisplay.push(
+      {
+        key: '0',
+        tab: 'map',
+        path: '/map',
+        icon: mapOutline,
+        label: 'Map'
+      },
+      {
+          key: '1',
+          tab: 'home',
+          path: '/home',
+          icon: homeOutline,
+          label: 'Home'
+      },
+      {
+          key: '4',
+          tab: 'list',
+          path: '/list',
+          icon: listOutline,
+          label: 'List'
+      }
+    )
+  }
+
   return(
     <IonApp>
       <IonReactRouter>
@@ -78,22 +188,6 @@ const App: React.FC = () => {
                 <IonRouterOutlet>
                     <Route exact path="/map">
                         <MapPage />
-                        {/* {buttonToDisplay = [{
-                            key: '4',
-                            tab: 'list',
-                            path: '/list',
-                            icon: listOutline,
-                            label: 'List'
-                          },
-                          {
-                            key: '1',
-                            tab: 'home',
-                            path: '/home',
-                            icon: homeOutline,
-                            label: 'Home'
-                          },
-                        ]} */}
-                        {buttonToDisplay.push(1)}
                     </Route>
                     <Route exact path="/home">
                         <Home />
@@ -108,10 +202,10 @@ const App: React.FC = () => {
                         <List />
                     </Route>
                     <Route exact path="/login">
-                        {/* sign in is coming */}
+                        {/* Login is coming */}
                     </Route>
                     <Route exact path="/signup">
-                        {/* sign up is coming */}
+                        {/* Sign up is coming */}
                     </Route>
                     <Route exact path="/">
                         <Redirect to="/home" />
@@ -119,13 +213,13 @@ const App: React.FC = () => {
                 </IonRouterOutlet>
 
                 <IonTabBar slot="bottom">
-                    {Routes.map((item, index) => {
+                    {buttonToDisplay.map((item, index) => {
                         console.log(item);
                         return (
-                            <IonTabButton key={item.key} tab={item.tab} href={item.path}>
-                                <IonIcon icon={item.icon} />
-                                <IonLabel>{item.label}</IonLabel>
-                            </IonTabButton>
+                          <IonTabButton key={item.key} tab={item.tab} href={item.path}>
+                              <IonIcon icon={item.icon} />
+                              <IonLabel>{item.label}</IonLabel>
+                          </IonTabButton>
                         )
                     })}
                 </IonTabBar>
