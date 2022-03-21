@@ -17,8 +17,9 @@ class PlaceService {
       where: { name: newPlace.name },
       defaults: {
         description: newPlace.description,
-        location: newPlace.location,
-        image: newPlace.image,
+        latitude: newPlace.latitude,
+        longitude: newPlace.longitude,
+        image: newPlace.imagePath,
       },
     });
 
