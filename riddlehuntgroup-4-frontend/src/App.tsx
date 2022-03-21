@@ -106,18 +106,18 @@ const App: React.FC = () => {
         label: 'Map'
       },
       {
-          key: '3',
-          tab: 'profile',
-          path: '/profile',
-          icon: personCircleOutline,
-          label: 'Profile'
+        key: '3',
+        tab: 'profile',
+        path: '/profile',
+        icon: personCircleOutline,
+        label: 'Profile'
       },
       {
-          key: '2',
-          tab: 'transport',
-          path: '/transport',
-          icon: busOutline,
-          label: 'Transport'
+        key: '2',
+        tab: 'transport',
+        path: '/transport',
+        icon: busOutline,
+        label: 'Transport'
       }
     )
     break;
@@ -140,18 +140,18 @@ const App: React.FC = () => {
         label: 'Map'
       },
       {
-          key: '1',
-          tab: 'home',
-          path: '/home',
-          icon: homeOutline,
-          label: 'Home'
+        key: '1',
+        tab: 'home',
+        path: '/home',
+        icon: homeOutline,
+        label: 'Home'
       },
       {
-          key: '2',
-          tab: 'transport',
-          path: '/transport',
-          icon: busOutline,
-          label: 'Transport'
+        key: '2',
+        tab: 'transport',
+        path: '/transport',
+        icon: busOutline,
+        label: 'Transport'
       }
     )
     break;
@@ -164,18 +164,35 @@ const App: React.FC = () => {
         label: 'Map'
       },
       {
-          key: '1',
-          tab: 'home',
-          path: '/home',
-          icon: homeOutline,
-          label: 'Home'
+        key: '1',
+        tab: 'home',
+        path: '/home',
+        icon: homeOutline,
+        label: 'Home'
       },
       {
-          key: '4',
-          tab: 'list',
-          path: '/list',
-          icon: listOutline,
-          label: 'List'
+        key: '4',
+        tab: 'list',
+        path: '/list',
+        icon: listOutline,
+        label: 'List'
+      }
+    )
+    break;
+    case "/description": buttonToDisplay.push(
+      {
+        key: '1',
+        tab: 'home',
+        path: '/home',
+        icon: homeOutline,
+        label: 'Home'
+      },
+      {
+        key: '2',
+        tab: 'transport',
+        path: '/transport',
+        icon: busOutline,
+        label: 'Transport'
       }
     )
   }

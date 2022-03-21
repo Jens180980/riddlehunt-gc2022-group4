@@ -9,28 +9,6 @@ import Home from '../../Pages/Home/Home';
 import Profile from '../../Pages/Profile/Profile';
 import List from '../../Pages/List/List';
 
-const Navigation: React.FC = () => {
-  const navItems = [
-    {
-      tab: "map",
-      path: "/map",
-      icon: mapOutline,
-      label: "Map",
-    },
-    {
-      tab: "profile",
-      path: "/profile",
-      icon: personCircleOutline,
-      label: "Profile",
-    },
-    {
-      tab: "transport",
-      path: "/transport",
-      icon: busOutline,
-      label: "Transport",
-    },
-  ];
-
 export const Navigation: React.FC = () => {
     const navItems = [
         {
