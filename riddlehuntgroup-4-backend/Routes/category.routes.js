@@ -1,17 +1,31 @@
+const passport = require("passport");
+const scopesValidationHandler = require("../utils/middlewares/scopesValidationHandler");
+require("../utils/auth/strategies/jwt");
+require("../utils/middlewares/scopesValidationHandler");
+
 module.exports = (app) => {
   const controller = require("../Controllers/category.controller");
   const router = require("express").Router();
 
-  router.get("/", controller.getAll);
-  router.get("/:id", controller.getById);
+  router.get(
+    "/",
+    passport.authenticate("jwt", { session: false }),
 
-  router.get("/getRoutes/:id", controller.getRoutesOfACategory);
+    controller.getAll
+  );
+  router.get(
+    "/:id",
+    passport.authenticate("jwt", { session: false }),
+    controller.getById
+  );
 
-  router.post("/", controller.create);
+  router.get("/getPlaces/:id", controller.getPlacesOfACategory);
 
-  router.put("/:id", controller.update);
+  router.post("/", scopesValidationHandler(["admin"]), controller.create);
 
-  router.delete("/:id", controller.delete);
+  router.put("/:id", scopesValidationHandler(["admin"]), controller.update);
+
+  router.delete("/:id", scopesValidationHandler(["admin"]), controller.delete);
 
   app.use("/category", router);
 };

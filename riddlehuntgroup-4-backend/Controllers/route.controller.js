@@ -1,22 +1,9 @@
-const db = require("../Models");
-
-const Route = db.route;
+const routeService = require("../Services/route.service").getRouteService();
 
 exports.create = async (req, res) => {
   try {
-    const [route, didNotExist] = await Route.findOrCreate({
-      where: { name: req.body.name },
-      defaults: {
-        time_in_hours: req.body.time_in_hours,
-        distance_in_km: req.body.distance_in_km,
-      },
-    });
-
-    const response = didNotExist
-      ? { message: `Route created successfully`, route }
-      : { message: `Route with same name already exist.` };
-
-    res.send(response);
+    const message = routeService.create(req.body);
+    res.send(message);
   } catch (error) {
     res
       .status(500)
@@ -26,7 +13,7 @@ exports.create = async (req, res) => {
 
 exports.getAll = async (req, res) => {
   try {
-    const routes = await Route.findAll();
+    const routes = await routeService.getAll();
     res.send(routes);
   } catch (error) {
     res
@@ -56,12 +43,13 @@ exports.getOneWithPlaces = async (req, res) => {
 };
 
 exports.getById = async (req, res) => {
-  if (!req.params.id) {
-    res.status(400).send("Please provide an id.");
-  }
+  // if (!req.params.id) {
+  //   res.status(400).send("Please provide an id.");
+  //   return;
+  // }
 
   try {
-    const route = await Route.findByPk(req.params.id);
+    const route = routeService.getById(req.params.id);
     res.send(route);
   } catch (error) {
     res
@@ -75,17 +63,7 @@ exports.getById = async (req, res) => {
 
 exports.update = async (req, res) => {
   try {
-    const updateStatus = await Route.update(req.body, {
-      where: {
-        id: req.params.id,
-      },
-    });
-
-    const message =
-      updateStatus == 1
-        ? "Route updated successfully"
-        : "Nothing to update or route not found";
-
+    const message = routeService.update(req.body);
     res.send(message);
   } catch (error) {
     res
@@ -96,13 +74,7 @@ exports.update = async (req, res) => {
 
 exports.delete = async (req, res) => {
   try {
-    const deleteStatus = await Route.destroy({
-      where: { id: req.params.id },
-    });
-
-    const message =
-      deleteStatus == 1 ? "Route deleted successfully." : "Route not found.";
-
+    const message = routeService.delete(req.params.id);
     res.send(message);
   } catch (error) {
     res
@@ -113,21 +85,12 @@ exports.delete = async (req, res) => {
 
 exports.addAPlace = async (req, res) => {
   try {
-    const route = await Route.findByPk(req.body.routeId);
-    const place = await db.place.findByPk(req.body.placeId);
-
-    const isInRoute = await route.hasPlace(place);
-
-    if (isInRoute) {
-      res.send("Place already in route.");
-      return;
-    }
-
-    await route.addPlace(place, {
-      through: { position_in_route: req.body.position_in_route },
-    });
-
-    res.send("Place added successfully");
+    const message = routeService.addAPlace(
+      req.body.routeId,
+      req.body.placeId,
+      req.body.position_in_route
+    );
+    res.send(message);
   } catch (error) {
     res
       .status(500)
