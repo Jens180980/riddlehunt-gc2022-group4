@@ -1,5 +1,6 @@
 import { busOutline, mapOutline, personCircleOutline } from "ionicons/icons";
 import Cards from "../../Partials/Cards/Cards";
+import Header from "../../Partials/Header/Header";
 
 const Home: React.FC = () => {
   const navHomeItems = [
@@ -28,7 +29,7 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <h1>Home Page</h1>
+      <Header />
       <Cards
         src="./testpic.jpg"
         subtitle="Restaurant"

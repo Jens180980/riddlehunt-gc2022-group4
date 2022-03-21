@@ -4,10 +4,9 @@ import { IonApp, setupIonicReact, IonTabs, IonTabBar, IonTabButton, IonIcon, Ion
 import { IonReactRouter } from '@ionic/react-router';
 import { busOutline, closeOutline, ellipse, homeOutline, listOutline, mapOutline, personCircleOutline, square, triangle } from 'ionicons/icons';
 
-
 // Pages import
 import Home from "./components/Pages/Home/Home";
-import { Navigation } from "./components/Partials/Navigation/Navigation";
+import Navigation from "./components/Partials/Navigation/Navigation";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -228,7 +227,5 @@ const App: React.FC = () => {
     </IonApp>
   );
 }
-
-
 
 export default App;
