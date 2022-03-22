@@ -1,6 +1,6 @@
 import React from 'react';
 import { IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel, IonBadge, IonRouterOutlet } from '@ionic/react';
-import { busOutline, homeOutline, mapOutline, personCircleOutline } from 'ionicons/icons';
+import { busOutline, homeOutline, mapOutline, personCircleOutline, personOutline } from 'ionicons/icons';
 import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route } from 'react-router-dom';
 import MapPage from '../../Pages/Map/Map';
@@ -27,10 +27,10 @@ export const Navigation: React.FC = () => {
         },
         {
             key: '2',
-            tab: 'transport',
-            path: '/transport',
-            icon: busOutline,
-            label: 'Transport'
+            tab: 'profile',
+            path: '/profile',
+            icon: personOutline,
+            label: 'Profile'
         }
     ]
 
