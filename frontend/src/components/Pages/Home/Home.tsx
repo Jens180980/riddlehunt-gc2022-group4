@@ -29,7 +29,7 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <Header />
+      <Header title="Riddlehunt 4.0" />
       <Cards
         src="./testpic.jpg"
         subtitle="Restaurant"
