@@ -7,15 +7,15 @@ import {
   IonLabel,
   IonText,
 } from "@ionic/react";
-import { SetStateAction, useState } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { useState } from "react";
 import { User } from "../../../interfaces/User.interface";
-import { login } from "../../../Services/login.service";
+import { login, register } from "../../../Services/login.service";
 import Header from "../../Partials/Header/Header";
 
 const SignIn: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
 
   /*   const navigate = "navigate"(); */
 
@@ -43,7 +43,7 @@ const SignIn: React.FC = () => {
         name: ""
       };
       
-      await login(user).then((res) => {
+      await register(user).then((res) => {
         if (res.data.token) {
           localStorage.setItem("token", res.data.token);
           return (window.location.href = "/home");
@@ -59,6 +59,18 @@ const SignIn: React.FC = () => {
       <Header title="Riddlehunt 4.0" />
 
       <form onSubmit={handleSubmit} className="ion-padding">
+      <IonItem>
+          <IonLabel position="floating" color="medium">
+            {" "}
+            Nombre{" "}
+          </IonLabel>
+          <IonInput
+            type="text"
+            autocomplete="email"
+            name="email"
+            onIonChange={(e) => setEmail(e.detail.value!)}
+          ></IonInput>
+        </IonItem>
         <IonItem>
           <IonLabel position="floating" color="medium">
             {" "}
