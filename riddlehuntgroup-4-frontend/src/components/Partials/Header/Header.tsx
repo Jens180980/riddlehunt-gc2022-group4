@@ -1,9 +1,12 @@
-import { IonApp } from "@ionic/react";
+import { IonApp, IonImg } from "@ionic/react";
 
-const Header: React.FC = () => (
-  <IonApp>
-    <h1>Header</h1>
-  </IonApp>
+const logoPath = "../../../Assets/Img/logo1.svg";
+
+const Header: React.FC = (props) => (
+  <>
+    <IonImg src={logoPath} />
+    <h2>Header</h2>
+  </>
 );
 
 export default Header;
