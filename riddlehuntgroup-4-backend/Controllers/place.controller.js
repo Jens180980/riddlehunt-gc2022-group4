@@ -1,8 +1,18 @@
 const placeService = require("../Services/place.service").getPlaceService();
+const imgUploader = require("imgbb-uploader");
+require("dotenv").config();
 
 exports.create = async (req, res) => {
   try {
-    const message = placeService.create(req.body);
+    const imgUploadResponse = await imgUploader(
+      process.env.IMGBB_API_KEY,
+      req.body.imagePath
+    );
+    const imagePath = imgUploadResponse.display_url;
+    console.log(req.body);
+    console.log(imagePath);
+    req.body.imagePath = imagePath;
+    const message = await placeService.create(req.body);
     res.send(message);
   } catch (error) {
     res

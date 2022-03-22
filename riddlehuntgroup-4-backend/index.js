@@ -1,4 +1,4 @@
-const db = require("./models");
+const db = require("./Models");
 
 const express = require("express");
 const cors = require("cors");
@@ -9,7 +9,7 @@ const corsOption = {
   //   origin: "",
 };
 
-db.sequelize.sync({ force: true }).then(() => {
+db.sequelize.sync({ force: true }).then(async () => {
   console.log("Sync db");
   db.category.bulkCreate(data.category);
   db.route.bulkCreate(data.route);

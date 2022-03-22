@@ -1,7 +1,7 @@
 const boom = require("@hapi/boom");
 const passport = require("passport");
 const { Strategy, ExtractJwt } = require("passport-jwt");
-const userService = require("../../../services/user.service").getUserService();
+const userService = require("../../../Services/user.service").getUserService();
 const config = require("../../../Config/env.config");
 
 passport.use(
