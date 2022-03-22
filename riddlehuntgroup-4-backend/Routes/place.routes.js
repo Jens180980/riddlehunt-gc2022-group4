@@ -7,7 +7,11 @@ module.exports = (app) => {
   router.get("/", controller.getAll);
   router.get("/:id", controller.getById);
 
-  router.post("/", scopesValidationHandler(["admin"]), controller.create);
+  router.post(
+    "/",
+    //scopesValidationHandler(["admin"]),
+    controller.create
+  );
 
   router.put("/:id", scopesValidationHandler(["admin"]), controller.update);
 

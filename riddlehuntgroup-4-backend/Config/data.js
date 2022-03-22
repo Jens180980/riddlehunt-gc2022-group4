@@ -2,29 +2,25 @@ module.exports = data = {
   category: [
     {
       name: "Southeast Sulawesi",
-      description:
-        "arcu eu odio tristique pharetra. Quisque ac libero nec ligula consectetuer rhoncus. Nullam velit dui, semper et, lacinia vitae, sodales at, velit. Pellentesque ultricies dignissim lacus. Aliquam rutrum lorem ac risus. Morbi metus. Vivamus euismod urna. Nullam lobortis quam a felis ullamcorper viverra. Maecenas",
+      description: "arcu eu odio tristique pharetra. ",
       icon: "est mauris, rhoncus id, mollis nec, cursus a, enim. Suspendisse",
     },
     {
       name: "Swiętokrzyskie",
-      description:
-        "parturient montes, nascetur ridiculus mus. Aenean eget magna. Suspendisse tristique neque venenatis lacus. Etiam bibendum fermentum metus. Aenean sed pede nec ante blandit viverra. Donec tempus, lorem fringilla ornare placerat, orci lacus vestibulum lorem, sit amet ultricies sem magna nec",
+      description: "parturient montes, ",
       icon: "dictum mi, ac mattis velit justo nec ante. Maecenas mi",
     },
     {
       name: "Valle del Cauca",
-      description:
-        "massa non ante bibendum ullamcorper. Duis cursus, diam at pretium aliquet, metus urna convallis erat, eget tincidunt dui augue eu tellus. Phasellus elit pede, malesuada vel, venenatis vel, faucibus id, libero. Donec",
-      icon: "elit erat vitae risus. Duis a mi fringilla mi lacinia",
+      description: "massa non ante ",
+      icon: "elit erat vitae risus",
     },
   ],
 
   place: [
     {
       name: "Canada",
-      description:
-        "arcu eu odio tristique pharetra. Quisque ac libero nec ligula consectetuer rhoncus. Nullam velit dui, semper et, lacinia vitae, sodales at, velit. Pellentesque ultricies dignissim lacus. Aliquam rutrum lorem ac risus. Morbi metus. Vivamus euismod urna. Nullam lobortis quam a felis ullamcorper viverra. Maecenas",
+      description: "arcu eu odio tristique pharetra.",
       latitude: "-78.8829437952",
       longitude: "-52.0581536768",
       image: "arcu iaculis enim, sit amet ornare lectus",
@@ -32,8 +28,7 @@ module.exports = data = {
     },
     {
       name: "Russian Federation",
-      description:
-        "parturient montes, nascetur ridiculus mus. Aenean eget magna. Suspendisse tristique neque venenatis lacus. Etiam bibendum fermentum metus. Aenean sed pede nec ante blandit viverra. Donec tempus, lorem fringilla ornare placerat, orci lacus vestibulum lorem, sit amet ultricies sem magna nec",
+      description: "parturient montes, nascetur",
       latitude: "7.9360386048",
       longitude: "93.4091744256",
       image: "a mi fringilla",
@@ -41,8 +36,7 @@ module.exports = data = {
     },
     {
       name: "Chile",
-      description:
-        "massa non ante bibendum ullamcorper. Duis cursus, diam at pretium aliquet, metus urna convallis erat, eget tincidunt dui augue eu tellus. Phasellus elit pede, malesuada vel, venenatis vel, faucibus id, libero. Donec",
+      description: "massa non ante bibendum ullamcorper.",
       latitude: "-13.7421817856",
       longitude: "25.2004496384",
       image: "faucibus ut,",
@@ -50,8 +44,7 @@ module.exports = data = {
     },
     {
       name: "Belgium",
-      description:
-        "eu metus. In lorem. Donec elementum, lorem ut aliquam iaculis, lacus pede sagittis",
+      description: "eu metus. In lorem.",
       latitude: "78.8099332096",
       longitude: "75.04996352",
       image: "Donec elementum, lorem ut aliquam",
@@ -59,8 +52,7 @@ module.exports = data = {
     },
     {
       name: "Germany",
-      description:
-        "aliquam eu, accumsan sed, facilisis vitae, orci. Phasellus dapibus quam quis diam. Pellentesque",
+      description: "aliquam eu, accumsan sed",
       latitude: "19.1230565376",
       longitude: "-179.90489344",
       image: "feugiat. Sed",
@@ -75,7 +67,7 @@ module.exports = data = {
       distance_in_km: 5,
     },
     {
-      name: "egestas a, dui. Cras pellentesque. Sed",
+      name: "egestas a, dui. Cras ",
       time_in_hours: 0,
       distance_in_km: 6,
     },
