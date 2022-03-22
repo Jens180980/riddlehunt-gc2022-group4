@@ -7,8 +7,6 @@ import {
   IonImg,
 } from "@ionic/react";
 
-import { LeafOutline, InfiniteOutline } from "react-ionicons";
-
 interface PropsInterface {
   src: string;
   subtitle: string;
@@ -25,8 +23,7 @@ const Cards: React.FC<PropsInterface> = (props) => {
         <IonCardTitle>{props.title}</IonCardTitle>
       </IonCardHeader>
       <IonCardContent>
-        <LeafOutline />
-        <InfiniteOutline />
+        
       </IonCardContent>
       <IonCardContent>{props.description}</IonCardContent>
     </IonCard>
