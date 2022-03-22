@@ -2,7 +2,7 @@ import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'io.ionic.starter',
-  appName: 'riddlehuntgroup4-frontend',
+  appName: 'frontend',
   webDir: 'build',
   bundledWebRuntime: false
 };
