@@ -22,7 +22,7 @@
     "ionicons": "^5.4.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-ionicons": "^4.2.0",
+    "react-ionicons": "^1.5.9",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "typescript": "^4.1.3",
