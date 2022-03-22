@@ -1,6 +1,6 @@
 import { IonApp, IonImg } from "@ionic/react";
 
-const logoPath = "../../../Assets/Img/logo1.svg";
+const logoPath = "https://i.ibb.co/ZJvLSBD/logo1.png";
 
 const Header: React.FC = (props) => (
   <>
