@@ -6,7 +6,7 @@ const config = require("../Config/env.config");
 //Basic strategy
 
 class AuthController {
-  userService = require("../services/user.service").getUserService();
+  userService = require("../Services/user.service").getUserService();
 
   signIn = (req, res, next) => {
     passport.authenticate("basic", function (error, user) {
