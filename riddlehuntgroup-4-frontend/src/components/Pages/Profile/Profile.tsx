@@ -1,3 +1,4 @@
+import { IonAvatar, IonIcon, IonList } from "@ionic/react";
 import { closeOutline } from "ionicons/icons";
 
 const Profile: React.FC = () => {
@@ -13,7 +14,11 @@ const Profile: React.FC = () => {
 
     return (
       <>
-        
+        <IonList>
+          <IonAvatar>
+            <IonIcon icon="personCircleOutline"></IonIcon>
+          </IonAvatar>
+        </IonList>
       </>
     );
   };
