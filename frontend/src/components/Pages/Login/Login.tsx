@@ -8,14 +8,17 @@ import {
   IonText,
 } from "@ionic/react";
 import { SetStateAction, useState } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { useHistory } from "react-router";
 import { User } from "../../../interfaces/User.interface";
-import { login } from "../../../Services/login.service";
+import LoginService from "../../../Services/login.service";
 import Header from "../../Partials/Header/Header";
 
 const SignIn: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const loginService = new LoginService();
+  let history = useHistory();
 
   /*   const navigate = "navigate"(); */
 
@@ -27,26 +30,26 @@ const SignIn: React.FC = () => {
     if (name === "password") setPassword(value);
   }
 
-  function navigateToRegister(e:any) {
-    return window.location.href="/register"
+  function navigateToRegister(e: any) {
+    return history.push("/signup");
   }
 
-  const handleSubmit = async (e:any) => {
+  const handleSubmit = async (e: any) => {
     try {
       e.preventDefault();
       const formData = new FormData();
 
-      
-      let user:User={
+      let user: User = {
         email,
         password,
-        name: ""
+        name: "",
+        profile_picture: "",
       };
-      
-      await login(user).then((res) => {
-        if (res.data.token) {
-          localStorage.setItem("token", res.data.token);
-          return (window.location.href = "/home");
+
+      await loginService.login(user).then((res) => {
+        if (res) {
+          localStorage.setItem("token", res);
+          return history.push("/home");
         }
       });
     } catch (error) {
@@ -87,7 +90,11 @@ const SignIn: React.FC = () => {
             {" "}
             Contraseña{" "}
           </IonLabel>
-          <IonInput   onIonChange={(e) => setPassword(e.detail.value!)} type="password" name="password" value={password}></IonInput>
+          <IonInput
+            onIonChange={(e) => setPassword(e.detail.value!)}
+            type="password"
+            name="password"
+          ></IonInput>
         </IonItem>
 
         <IonButton
@@ -110,7 +117,6 @@ const SignIn: React.FC = () => {
           color="light"
           fill="outline"
           shape="round"
-         
           onClick={navigateToRegister}
         >
           <IonLabel color="medium">¿Eres nuevo? Regístrate!</IonLabel>

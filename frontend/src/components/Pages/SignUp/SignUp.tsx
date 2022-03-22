@@ -8,14 +8,19 @@ import {
   IonText,
 } from "@ionic/react";
 import { useState } from "react";
+import { useHistory } from "react-router";
 import { User } from "../../../interfaces/User.interface";
-import { login, register } from "../../../Services/login.service";
+import LoginService from "../../../Services/login.service";
 import Header from "../../Partials/Header/Header";
 
 const SignUp: React.FC = () => {
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+
+  const loginService = new LoginService();
+  let history = useHistory();
 
   /*   const navigate = "navigate"(); */
 
@@ -27,26 +32,26 @@ const SignUp: React.FC = () => {
     if (name === "password") setPassword(value);
   }
 
-  function navigateToRegister(e:any) {
-    return window.location.href="/register"
+  function navigateToLogin(e: any) {
+    return history.push("/login");
   }
 
-  const handleSubmit = async (e:any) => {
+  const handleSubmit = async (e: any) => {
     try {
       e.preventDefault();
-      const formData = new FormData();
 
-      
-      let user:User={
+      let user: User = {
         email,
         password,
-        name: ""
+        name: "",
+        profile_picture: "",
       };
-      
-      await register(user).then((res) => {
-        if (res.data.token) {
-          localStorage.setItem("token", res.data.token);
-          return (window.location.href = "/home");
+
+      await loginService.register(user).then((res) => {
+        console.log(res);
+        if (res) {
+          localStorage.setItem("token", res);
+          return history.push("/home");
         }
       });
     } catch (error) {
@@ -57,9 +62,8 @@ const SignUp: React.FC = () => {
   return (
     <>
       <Header title="Riddlehunt 4.0" />
-
       <form onSubmit={handleSubmit} className="ion-padding">
-      <IonItem>
+        <IonItem>
           <IonLabel position="floating" color="medium">
             {" "}
             Nombre{" "}
@@ -99,7 +103,12 @@ const SignUp: React.FC = () => {
             {" "}
             Contraseña{" "}
           </IonLabel>
-          <IonInput   onIonChange={(e) => setPassword(e.detail.value!)} type="password" name="password" value={password}></IonInput>
+          <IonInput
+            onIonChange={(e) => setPassword(e.detail.value!)}
+            type="password"
+            name="password"
+            value={password}
+          ></IonInput>
         </IonItem>
 
         <IonButton
@@ -111,7 +120,7 @@ const SignUp: React.FC = () => {
           shape="round"
         >
           <IonText color="light" className="text-shadow">
-            Iniciar sesión
+            Registrarme
           </IonText>
         </IonButton>
 
@@ -122,10 +131,9 @@ const SignUp: React.FC = () => {
           color="light"
           fill="outline"
           shape="round"
-         
-          onClick={navigateToRegister}
+          onClick={navigateToLogin}
         >
-          <IonLabel color="medium">¿Eres nuevo? Regístrate!</IonLabel>
+          <IonLabel color="medium">¿Ya tienes una cuenta? Inicia sesión!</IonLabel>
         </IonButton>
       </form>
 

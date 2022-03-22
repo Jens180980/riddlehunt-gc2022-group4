@@ -43,6 +43,7 @@ import List from "./components/Pages/List/List";
 import MapPage from "./components/Pages/Map/Map";
 import Transport from "./components/Pages/Transport/Transport";
 import Login from "./components/Pages/Login/Login";
+import SignUp from "./components/Pages/SignUp/SignUp";
 
 setupIonicReact();
 
@@ -92,7 +93,6 @@ const App: React.FC = () => {
       icon: closeOutline,
       label: "Back",
     },
-    
   ];
 
   let buttonToDisplay = [];
@@ -229,10 +229,10 @@ const App: React.FC = () => {
               <List />
             </Route>
             <Route exact path="/login">
-              <Login/>
+              <Login />
             </Route>
             <Route exact path="/signup">
-              {/* Sign up is coming */}
+              <SignUp />
             </Route>
             <Route exact path="/">
               <Redirect to="/home" />
