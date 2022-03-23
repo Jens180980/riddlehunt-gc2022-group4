@@ -239,7 +239,7 @@ const App: React.FC = () => {
 
           <IonTabBar slot="bottom">
             {buttonToDisplay.map((item, index) => {
-              console.log(item);
+              //console.log(item);
               return (
                 <IonTabButton key={item.key} tab={item.tab} href={item.path}>
                   <IonIcon icon={item.icon} />

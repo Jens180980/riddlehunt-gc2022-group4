@@ -29,7 +29,7 @@ const MapPage: React.FC = () => {
 
     return (
       <>
-        <Header/>
+        <Header title={"Hola"}/>
         <Map lat={0} long={0} />
       </>
     );

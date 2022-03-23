@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import * as L from 'leaflet';
 import 'leaflet-routing-machine';
 import { MapContainer, TileLayer, Marker, Popup, useMap, useMapEvents } from 'react-leaflet';
-import '../../../../node_modules/leaflet/dist/leaflet'
+import '../../../../node_modules/leaflet/dist/leaflet.css'
 import '../../../../node_modules/leaflet-routing-machine/dist/leaflet-routing-machine.css';
 
 import './map.css';
@@ -21,6 +21,15 @@ const personIcon = new L.Icon({
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],
     shadowSize: [41, 41]
+
+});
+
+const empti = new L.Icon({
+    iconUrl: 'https://www.freeiconspng.com/thumbs/walking-icon/walking-icon-1.png',
+    iconSize: [0, 0],
+    iconAnchor: [0, 0],
+    popupAnchor: [0, 0],
+    shadowSize: [0, 0]
 
 });
 
@@ -65,6 +74,7 @@ function UserLocation() {
 
     map.locate({
         setView: true,//false
+        maxZoom: 16,
     })
 
     /*useEffect(() => {
@@ -107,18 +117,16 @@ function UserLocation() {
     return null;
 }
 
-function Waypoints() {
-    console.log("añadir ", lat, long)
+function Waypoints(){
+    let count = 0;
     let coord=[
             L.latLng(28.1296, -15.4480),
             L.latLng(28.13409, -15.4404),
             L.latLng(28.1396, -15.4307)
     ]
     if(lat && long){
-        console.log("añadir ", lat, long)
         coord.unshift(L.latLng(lat, long));
     }
-    console.log(coord)
 
     L.Routing.control(/*L.extend(window.lrmConfig, */{
         waypoints: coord,
@@ -143,7 +151,31 @@ function Waypoints() {
             extendToWaypoints: false,
             missingRouteTolerance: 0
         },
-        //plan: L.Routing
+        plan: L.Routing.plan(coord, {
+            createMarker: function (i, wp, nWps){
+                if (i === 0) {
+                    // here change the starting and ending icons
+                    return L.marker(wp.latLng, {
+                      icon: empti
+                    });
+                }else if (i === 1) {
+                    return L.marker(wp.latLng, {
+                        icon: greenIcon
+                    });
+                }
+                else if (i === nWps - 1) {
+                    // here change the starting and ending icons
+                    return L.marker(wp.latLng, {
+                        icon: redIcon 
+                    });
+                } else {
+                    // here change all the others
+                    return L.marker(wp.latLng, {
+                        icon: blueIcon
+                    });
+                }
+            }
+        })
 
 
     }).addTo(map);
@@ -151,12 +183,6 @@ function Waypoints() {
     return null;
 
 }
-
-// function changeWayToGo(way:String){
-//     //https://gis.stackexchange.com/questions/193235/leaflet-routing-machine-how-to-dinamically-change-router-settings
-//     control.getRouter().options.urlParameters.vehicle = 'foot';
-//     control.route();
-// }
 
 const Map: React.FC<Waypoints> = (props: Waypoints) => {
 
