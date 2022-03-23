@@ -44,8 +44,6 @@ const App: React.FC = () => {
     getData();
   }, []);
 
-  console.log(placesData);
-
   return (
     <IonApp>
       <placesContext.Provider value={placesData}>
