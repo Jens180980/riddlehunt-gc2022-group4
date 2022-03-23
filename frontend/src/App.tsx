@@ -23,21 +23,26 @@ import "@ionic/react/css/core.css";
 import "@ionic/react/css/normalize.css";
 import "@ionic/react/css/structure.css";
 import "@ionic/react/css/typography.css";
+import PlaceService from "./Services/fetch";
 
 setupIonicReact();
-
-export const placesContext = createContext("");
+interface contextInterface {
+  placesData: any;
+  setPlacesData: any;
+}
+export const placesContext = createContext<any>({});
 
 const App: React.FC = () => {
-  const [placesData, setPlacesData] = useState(null);
+  const placeService = new PlaceService();
+  const [placesData, setPlacesData] = useState();
   useEffect(() => {
     const getData = async () => {
-      const apiPlaces = await Fetch(
-        "https://the-great-riddle-hunt.herokuapp.com/place"
-      );
-      setPlacesData(apiPlaces);
+      placeService.fetchPlace().then((apiPlaces) => {
+        setPlacesData(apiPlaces.data);
+      });
     };
-  }, [setPlacesData]);
+    getData();
+  }, []);
 
   console.log(placesData);
 
