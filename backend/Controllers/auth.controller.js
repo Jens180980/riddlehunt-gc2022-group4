@@ -12,7 +12,7 @@ class AuthController {
     passport.authenticate("basic", function (error, user) {
       try {
         if (error || !user) {
-          next(
+          return next(
             res.status(401).json({
               message: "Unauthorized",
             })
@@ -20,13 +20,13 @@ class AuthController {
         }
         req.login(user, { session: false }, async function (error) {
           if (error) {
-            next(
+           return next(
               res.status(400).json({
                 message: error + ", Some error occurred loging user.",
               })
             );
           }
-
+          
           const { email, name, role } = user;
           /// .env
           const expireTime = 30;

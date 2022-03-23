@@ -22,7 +22,7 @@ async login(user: User): Promise<any> {
         "Content-Type": "application/json",
         "Authorization": `Basic ${btoa(user.email + ":" + user.password)}`
     }
-    return axios.get<string>(REACT_APP_BACKEND_HOST + "/api/auth/sing-in", { headers: headers });
+    return axios.post<string>(REACT_APP_BACKEND_HOST + "/api/auth/sign-in",{}, { headers: headers });
 }
 
 
@@ -30,7 +30,7 @@ async register(user: User): Promise<any> {
     const headers = {
         "Content-Type": "application/json",
     }
-    return axios.post<string>(REACT_APP_BACKEND_HOST + "/api/auth/sing-up", user, { headers: headers });
+    return axios.post<string>(REACT_APP_BACKEND_HOST + "/api/auth/sign-up", JSON.stringify(user), { headers: headers });
 }
 }
 export default LoginService;
