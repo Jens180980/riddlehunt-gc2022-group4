@@ -1,40 +1,20 @@
 import { busOutline, mapOutline, personCircleOutline } from "ionicons/icons";
 import Cards from "../../Partials/Cards/Cards";
 import Header from "../../Partials/Header/Header";
+import { useContext } from "react";
+import { placesContext } from "../../../App";
 
 const Home: React.FC = () => {
-  const navHomeItems = [
-    {
-      key: "0",
-      tab: "map",
-      path: "/map",
-      icon: mapOutline,
-      label: "Map",
-    },
-    {
-      key: "3",
-      tab: "profile",
-      path: "/profile",
-      icon: personCircleOutline,
-      label: "Profile",
-    },
-    {
-      key: "2",
-      tab: "transport",
-      path: "/transport",
-      icon: busOutline,
-      label: "Transport",
-    },
-  ];
+  const places = useContext(placesContext);
 
   return (
     <>
       <Header title="Riddlehunt 4.0" />
       <Cards
-        src="./testpic.jpg"
+        src="https://i.ibb.co/QdMYQxk/3d48a98a13dc.jpg"
         subtitle="Restaurant"
-        title="BioLoco"
-        description="100% vegan food, and you can even bring your pet"
+        title={places}
+        description="testing"
       />
     </>
   );
