@@ -1,20 +1,12 @@
-import {
-  IonButton,
-  IonContent,
-  IonIcon,
-  IonInput,
-  IonItem,
-  IonLabel,
-  IonText,
-} from "@ionic/react";
+import { IonButton, IonInput, IonItem, IonLabel, IonText } from "@ionic/react";
 import { useState } from "react";
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 import { User } from "../../../interfaces/User.interface";
 import LoginService from "../../../Services/login.service";
 import Header from "../../Partials/Header/Header";
 
 const SignUp: React.FC = () => {
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -23,14 +15,6 @@ const SignUp: React.FC = () => {
   let history = useHistory();
 
   /*   const navigate = "navigate"(); */
-
-  async function handleInput(e: { currentTarget: { name: any; value: any } }) {
-    const name = e.currentTarget.name;
-    const value = e.currentTarget.value;
-
-    if (name === "email") setEmail(value);
-    if (name === "password") setPassword(value);
-  }
 
   function navigateToLogin(e: any) {
     return history.push("/login");
@@ -69,10 +53,15 @@ const SignUp: React.FC = () => {
             Nombre{" "}
           </IonLabel>
           <IonInput
+            autofocus
             type="text"
-            autocomplete="email"
-            name="email"
-            onIonChange={(e) => setEmail(e.detail.value!)}
+            autocomplete="name"
+            name="name"
+            required
+            minlength={4}
+            maxlength={100}
+            onIonChange={(e) => setName(e.detail.value!)}
+            value={name}
           ></IonInput>
         </IonItem>
         <IonItem>
@@ -81,10 +70,11 @@ const SignUp: React.FC = () => {
             Email{" "}
           </IonLabel>
           <IonInput
-            type="text"
+            type="email"
             autocomplete="email"
             name="email"
             onIonChange={(e) => setEmail(e.detail.value!)}
+            value={email}
           ></IonInput>
         </IonItem>
         {/*  <div className="validation-errors">
@@ -108,6 +98,9 @@ const SignUp: React.FC = () => {
             type="password"
             name="password"
             value={password}
+            required
+            minlength={4}
+            maxlength={100}
           ></IonInput>
         </IonItem>
 
@@ -116,7 +109,7 @@ const SignUp: React.FC = () => {
           type="submit"
           color="warning"
           expand="full"
-          size="small"
+          size="default"
           shape="round"
         >
           <IonText color="light" className="text-shadow">
@@ -127,18 +120,20 @@ const SignUp: React.FC = () => {
         <IonButton
           className="ion-padding"
           expand="full"
-          size="small"
+          size="default"
           color="light"
           fill="outline"
           shape="round"
           onClick={navigateToLogin}
         >
-          <IonLabel color="medium">¿Ya tienes una cuenta? Inicia sesión!</IonLabel>
+          <IonLabel color="medium">
+            ¿Ya tienes una cuenta? Inicia sesión!
+          </IonLabel>
         </IonButton>
       </form>
 
       <IonItem lines="none" className="footer">
-        <a href="">Aviso Legal</a>
+        <Link to={"#"}>Aviso Legal</Link>
       </IonItem>
     </>
   );

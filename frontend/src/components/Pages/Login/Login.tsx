@@ -1,14 +1,7 @@
-import {
-  IonButton,
-  IonContent,
-  IonIcon,
-  IonInput,
-  IonItem,
-  IonLabel,
-  IonText,
-} from "@ionic/react";
-import { SetStateAction, useState } from "react";
+import { IonButton, IonInput, IonItem, IonLabel, IonText } from "@ionic/react";
+import { useState } from "react";
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 import { User } from "../../../interfaces/User.interface";
 import LoginService from "../../../Services/login.service";
 import Header from "../../Partials/Header/Header";
@@ -20,16 +13,6 @@ const SignIn: React.FC = () => {
   const loginService = new LoginService();
   let history = useHistory();
 
-  /*   const navigate = "navigate"(); */
-
-  async function handleInput(e: { currentTarget: { name: any; value: any } }) {
-    const name = e.currentTarget.name;
-    const value = e.currentTarget.value;
-
-    if (name === "email") setEmail(value);
-    if (name === "password") setPassword(value);
-  }
-
   function navigateToRegister(e: any) {
     return history.push("/signup");
   }
@@ -37,7 +20,6 @@ const SignIn: React.FC = () => {
   const handleSubmit = async (e: any) => {
     try {
       e.preventDefault();
-      const formData = new FormData();
 
       let user: User = {
         email,
@@ -60,7 +42,6 @@ const SignIn: React.FC = () => {
   return (
     <>
       <Header title="Riddlehunt 4.0" />
-
       <form onSubmit={handleSubmit} className="ion-padding">
         <IonItem>
           <IonLabel position="floating" color="medium">
@@ -68,10 +49,14 @@ const SignIn: React.FC = () => {
             Email{" "}
           </IonLabel>
           <IonInput
-            type="text"
+            autofocus
+            type="email"
             autocomplete="email"
             name="email"
             onIonChange={(e) => setEmail(e.detail.value!)}
+            required
+            minlength={4}
+            maxlength={100}
           ></IonInput>
         </IonItem>
         {/*  <div className="validation-errors">
@@ -94,6 +79,9 @@ const SignIn: React.FC = () => {
             onIonChange={(e) => setPassword(e.detail.value!)}
             type="password"
             name="password"
+            required
+            minlength={5}
+            maxlength={50}
           ></IonInput>
         </IonItem>
 
@@ -102,7 +90,7 @@ const SignIn: React.FC = () => {
           type="submit"
           color="warning"
           expand="full"
-          size="small"
+          size="default"
           shape="round"
         >
           <IonText color="light" className="text-shadow">
@@ -113,7 +101,7 @@ const SignIn: React.FC = () => {
         <IonButton
           className="ion-padding"
           expand="full"
-          size="small"
+          size="default"
           color="light"
           fill="outline"
           shape="round"
@@ -124,7 +112,7 @@ const SignIn: React.FC = () => {
       </form>
 
       <IonItem lines="none" className="footer">
-        <a href="">Aviso Legal</a>
+        <Link to={"#"}>Aviso Legal</Link>
       </IonItem>
     </>
   );
