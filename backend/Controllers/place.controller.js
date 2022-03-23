@@ -23,7 +23,7 @@ exports.create = async (req, res) => {
 
 exports.getAll = async (req, res) => {
   try {
-    const places = placeService.getAll();
+    const places = await placeService.getAll();
     res.send(places);
   } catch (error) {
     res
