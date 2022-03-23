@@ -4,7 +4,7 @@
     "description": "",
     "scripts": {
       "test": "echo \"Error: no test specified\" && exit 1",
-      "start": "cd  riddlehuntgroup-4-backend && npm install && node index.js && cd .. && cd  riddlehuntgroup-4-frontend/ && npm install && ionic serve"
+      "start": "cd backend && npm install && node index.js"
     },
     "keywords": [
       ""
