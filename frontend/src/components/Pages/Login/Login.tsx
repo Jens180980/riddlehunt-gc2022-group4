@@ -22,6 +22,7 @@ const SignIn: React.FC = () => {
       e.preventDefault();
 
       let user: User = {
+        id:0,
         email,
         password,
         name: "",

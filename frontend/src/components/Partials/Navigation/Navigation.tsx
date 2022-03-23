@@ -22,6 +22,8 @@ import Transport from "../../Pages/Transport/Transport";
 import Home from "../../Pages/Home/Home";
 import Profile from "../../Pages/Profile/Profile";
 import List from "../../Pages/List/List";
+import Login from "../../Pages/Login/Login";
+import SignUp from "../../Pages/SignUp/SignUp";
 
 export const Navigation: React.FC = () => {
   const navItems = [
@@ -68,10 +70,10 @@ export const Navigation: React.FC = () => {
             <List />
           </Route>
           <Route exact path="/login">
-            {/* login is coming */}
+            <Login/>
           </Route>
           <Route exact path="/signup">
-            {/* sign up is coming */}
+            <SignUp/>
           </Route>
           <Route exact path="/">
             <Redirect to="/home" />

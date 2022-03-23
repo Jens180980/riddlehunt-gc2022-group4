@@ -37,7 +37,7 @@ const App: React.FC = () => {
   const [placesData, setPlacesData] = useState();
   useEffect(() => {
     const getData = async () => {
-      placeService.fetchPlace().then((apiPlaces) => {
+      placeService.getPlaces().then((apiPlaces) => {
         setPlacesData(apiPlaces.data);
       });
     };
