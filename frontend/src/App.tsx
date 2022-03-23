@@ -10,7 +10,7 @@ import {
   IonRouterOutlet,
 } from "@ionic/react";
 import { useState, createContext, useEffect } from "react";
-import Fetch from "./Services/fetch";
+import Fetch from "./Services/places.service";
 
 // Pages import
 import Navigation from "./components/Partials/Navigation/Navigation";
@@ -23,7 +23,7 @@ import "@ionic/react/css/core.css";
 import "@ionic/react/css/normalize.css";
 import "@ionic/react/css/structure.css";
 import "@ionic/react/css/typography.css";
-import PlaceService from "./Services/fetch";
+import PlaceService from "./Services/places.service";
 
 setupIonicReact();
 interface contextInterface {
