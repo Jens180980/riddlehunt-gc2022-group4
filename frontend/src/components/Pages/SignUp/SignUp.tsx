@@ -1,9 +1,141 @@
+import { IonButton, IonInput, IonItem, IonLabel, IonText } from "@ionic/react";
+import { useState } from "react";
+import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
+import { User } from "../../../interfaces/User.interface";
+import LoginService from "../../../Services/login.service";
+import Header from "../../Partials/Header/Header";
+
 const SignUp: React.FC = () => {
-    return (
-      <>
-        <h1>Sign Up</h1>
-      </>
-    );
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+
+  const loginService = new LoginService();
+  let history = useHistory();
+
+  /*   const navigate = "navigate"(); */
+
+  function navigateToLogin(e: any) {
+    return history.push("/login");
+  }
+
+  const handleSubmit = async (e: any) => {
+    try {
+      e.preventDefault();
+
+      let user: User = {
+        email,
+        password,
+        name: "",
+        profile_picture: "",
+      };
+
+      await loginService.register(user).then((res) => {
+        console.log(res);
+        if (res) {
+          localStorage.setItem("token", res);
+          return history.push("/home");
+        }
+      });
+    } catch (error) {
+      console.error(error);
+    }
   };
-  export default SignUp;
-  
+
+  return (
+    <>
+      <Header title="Riddlehunt 4.0" />
+      <form onSubmit={handleSubmit} className="ion-padding">
+        <IonItem>
+          <IonLabel position="floating" color="medium">
+            {" "}
+            Nombre{" "}
+          </IonLabel>
+          <IonInput
+            autofocus
+            type="text"
+            autocomplete="name"
+            name="name"
+            required
+            minlength={4}
+            maxlength={100}
+            onIonChange={(e) => setName(e.detail.value!)}
+            value={name}
+          ></IonInput>
+        </IonItem>
+        <IonItem>
+          <IonLabel position="floating" color="medium">
+            {" "}
+            Email{" "}
+          </IonLabel>
+          <IonInput
+            type="email"
+            autocomplete="email"
+            name="email"
+            onIonChange={(e) => setEmail(e.detail.value!)}
+            value={email}
+          ></IonInput>
+        </IonItem>
+        {/*  <div className="validation-errors">
+        <span *ngFor="let validation of validationMessages.email">
+          <div
+            className="alert"
+            *ngIf="loginForm.get('email').hasError(validation.type) && loginForm.get('email').dirty"
+          >
+            {{validation.message}}
+          </div>
+        </span>
+      </div>
+ */}
+        <IonItem>
+          <IonLabel position="floating" color="medium">
+            {" "}
+            Contraseña{" "}
+          </IonLabel>
+          <IonInput
+            onIonChange={(e) => setPassword(e.detail.value!)}
+            type="password"
+            name="password"
+            value={password}
+            required
+            minlength={4}
+            maxlength={100}
+          ></IonInput>
+        </IonItem>
+
+        <IonButton
+          className="ion-padding"
+          type="submit"
+          color="warning"
+          expand="full"
+          size="default"
+          shape="round"
+        >
+          <IonText color="light" className="text-shadow">
+            Registrarme
+          </IonText>
+        </IonButton>
+
+        <IonButton
+          className="ion-padding"
+          expand="full"
+          size="default"
+          color="light"
+          fill="outline"
+          shape="round"
+          onClick={navigateToLogin}
+        >
+          <IonLabel color="medium">
+            ¿Ya tienes una cuenta? Inicia sesión!
+          </IonLabel>
+        </IonButton>
+      </form>
+
+      <IonItem lines="none" className="footer">
+        <Link to={"#"}>Aviso Legal</Link>
+      </IonItem>
+    </>
+  );
+};
+export default SignUp;
