@@ -6,7 +6,7 @@ import { Redirect, Route } from 'react-router-dom';
 import MapPage from '../../Pages/Map/Map';
 import Transport from '../../Pages/Transport/Transport';
 import Home from '../../Pages/Home/Home';
-import Profile from '../../Pages/Profile/Profile';
+import { Profile } from '../../Pages/Profile/Profile';
 import List from '../../Pages/List/List';
 
 export const Navigation: React.FC = () => {
