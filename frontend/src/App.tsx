@@ -17,7 +17,9 @@ setupIonicReact();
 const App: React.FC = () => {
   return(
     <IonApp>
+
       <Navigation />
+
     </IonApp>
   );
 }
