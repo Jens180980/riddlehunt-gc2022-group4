@@ -38,7 +38,7 @@ const greenIcon = new L.Icon({
     iconSize: [25, 41],
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],
-    shadowSize: [41, 41]
+    shadowSize: [41, 41],
 
 });
 
@@ -47,7 +47,7 @@ const blueIcon = new L.Icon({
     iconSize: [25, 41],
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],
-    shadowSize: [41, 41]
+    shadowSize: [41, 41],
 
 });
 
@@ -56,7 +56,7 @@ const redIcon = new L.Icon({
     iconSize: [25, 41],
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],
-    shadowSize: [41, 41]
+    shadowSize: [41, 41],
 
 });
 
@@ -105,7 +105,7 @@ function UserLocation() {
                 marker = L.marker(
                     location.latlng,
                     {
-                        icon: personIcon
+                        icon: personIcon,
                     },
                 ).addTo(map);
 
@@ -128,7 +128,7 @@ function Waypoints(){
         coord.unshift(L.latLng(lat, long));
     }
 
-    L.Routing.control(/*L.extend(window.lrmConfig, */{
+    L.Routing.control({
         waypoints: coord,
         // router: L.Routing.graphHopper('36587c66-f6a0-4d59-80bf-4fa2ccb9e3b3', {
         //     urlParameters: {
@@ -154,22 +154,22 @@ function Waypoints(){
         plan: L.Routing.plan(coord, {
             createMarker: function (i, wp, nWps){
                 if (i === 0) {
-                    // here change the starting and ending icons
                     return L.marker(wp.latLng, {
-                      icon: empti
+                      icon: empti,
                     });
+                    // change starting icon
                 }else if (i === 1) {
                     return L.marker(wp.latLng, {
                         icon: greenIcon
                     });
                 }
                 else if (i === nWps - 1) {
-                    // here change the starting and ending icons
+                    // change ending icon
                     return L.marker(wp.latLng, {
                         icon: redIcon 
                     });
                 } else {
-                    // here change all the others
+                    // change other icons
                     return L.marker(wp.latLng, {
                         icon: blueIcon
                     });
