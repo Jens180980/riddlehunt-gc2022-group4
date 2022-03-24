@@ -18,7 +18,9 @@ module.exports = (sequelize, Sequelize) => {
     Place.belongsToMany(models.route, {
       through: models.route_places,
     });
-    Place.belongsTo(models.category);
+    Place.belongsToMany(models.category, {
+      through: "place_category",
+    });
   };
 
   return Place;
