@@ -18,12 +18,12 @@ import {
 import { IonReactRouter } from "@ionic/react-router";
 import { Redirect, Route } from "react-router-dom";
 import MapPage from "../../Pages/Map/Map";
-import Transport from "../../Pages/Transport/Transport";
 import Home from "../../Pages/Home/Home";
 import Profile from "../../Pages/Profile/Profile";
 import List from "../../Pages/List/List";
 import Login from "../../Pages/Login/Login";
 import SignUp from "../../Pages/SignUp/SignUp";
+import RoutesPage from "../../Pages/Routes/Routes";
 
 export const Navigation: React.FC = () => {
   const navItems = [
@@ -57,11 +57,11 @@ export const Navigation: React.FC = () => {
           <Route exact path="/map">
             <MapPage />
           </Route>
+          <Route exact path="/routes">
+            <RoutesPage />
+          </Route>
           <Route exact path="/home">
             <Home />
-          </Route>
-          <Route exact path="/transport">
-            <Transport />
           </Route>
           <Route exact path="/profile">
             <Profile />
@@ -70,10 +70,10 @@ export const Navigation: React.FC = () => {
             <List />
           </Route>
           <Route exact path="/login">
-            <Login/>
+            <Login />
           </Route>
           <Route exact path="/signup">
-            <SignUp/>
+            <SignUp />
           </Route>
           <Route exact path="/">
             <Redirect to="/home" />
