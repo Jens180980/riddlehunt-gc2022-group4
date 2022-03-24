@@ -2,8 +2,6 @@
 import { IonApp, setupIonicReact } from "@ionic/react";
 import { useState, createContext, useEffect } from "react";
 
-import axios from "axios";
-
 // Pages import
 import Navigation from "./components/Partials/Navigation/Navigation";
 
@@ -15,6 +13,8 @@ import "@ionic/react/css/normalize.css";
 import "@ionic/react/css/structure.css";
 import "@ionic/react/css/typography.css";
 import PlaceService from "./Services/places.service";
+
+import "./style.css";
 
 setupIonicReact();
 

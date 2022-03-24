@@ -1,5 +1,15 @@
 #mapcontainer{
-    /*left: -8px;*/
     border-radius: 10px;
-    width: auto;
+    width: 85vw;
+    height: 78vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.center-map {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

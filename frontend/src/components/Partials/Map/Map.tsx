@@ -99,7 +99,7 @@ function UserLocation() {
             Waypoints();
             try {
                 marker.removeFrom(map)
-                
+
             } catch {
 
             } finally {
@@ -118,7 +118,7 @@ function UserLocation() {
     return null;
 }
 
-function Waypoints(){
+function Waypoints() {
     //let ruta = 0;
     //let coord=[];
 
@@ -126,13 +126,13 @@ function Waypoints(){
     //     coord.push(L.latLng(ruta.place.latitud, ruta.place.longitud));
     // }
 
-    let coord=[
-            L.latLng(28.1296, -15.4480),
-            L.latLng(28.13409, -15.4404),
-            L.latLng(28.1396, -15.4307), 
+    let coord = [
+        L.latLng(28.1296, -15.4480),
+        L.latLng(28.13409, -15.4404),
+        L.latLng(28.1396, -15.4307),
     ]
 
-    if(lat && long){
+    if (lat && long) {
         coord.unshift(L.latLng(lat, long));
     }
 
@@ -160,13 +160,13 @@ function Waypoints(){
             missingRouteTolerance: 0
         },
         plan: L.Routing.plan(coord, {
-            createMarker: function (i, wp, nWps){
+            createMarker: function (i, wp, nWps) {
                 if (i === 0) {
                     return L.marker(wp.latLng, {
-                      icon: empti,
+                        icon: empti,
                     });
                     // change starting icon
-                }else if (i === 1) {
+                } else if (i === 1) {
                     return L.marker(wp.latLng, {
                         icon: greenIcon
                     }).bindPopup("ThisIsAmerica");
@@ -174,7 +174,7 @@ function Waypoints(){
                 else if (i === nWps - 1) {
                     // change ending icon
                     return L.marker(wp.latLng, {
-                        icon: redIcon 
+                        icon: redIcon
                     }).bindPopup("ThisIsAmerica");
                 } else {
                     // change other icons
@@ -185,7 +185,7 @@ function Waypoints(){
             }
         }),
         addWaypoints: false,
-        
+
     }).addTo(map);
 
     return null;
@@ -195,14 +195,16 @@ function Waypoints(){
 const Map: React.FC<Waypoints> = (props: Waypoints) => {
 
     return (
-        <MapContainer id="mapcontainer" center={[props.lat, props.long]} zoom={16}>
-            <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            <UserLocation />
-            <Waypoints /> 
-        </MapContainer>
+        <div className="center-map">
+            <MapContainer id="mapcontainer" center={[props.lat, props.long]} zoom={16}>
+                <TileLayer
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+                <UserLocation />
+                <Waypoints />
+            </MapContainer>
+        </div>
     );
 
 }
