@@ -32,6 +32,7 @@ class PlaceService {
 
   async getAll() {
     const places = await Place.findAll();
+
     return places;
   }
 
