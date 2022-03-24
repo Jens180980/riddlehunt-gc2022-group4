@@ -1,7 +1,8 @@
 // Ionic components import
 import { IonApp, setupIonicReact } from "@ionic/react";
 import { useState, createContext, useEffect } from "react";
-import Fetch from "./Services/places.service";
+
+import axios from "axios";
 
 // Pages import
 import Navigation from "./components/Partials/Navigation/Navigation";
@@ -17,6 +18,24 @@ import PlaceService from "./Services/places.service";
 
 setupIonicReact();
 
+//interceptors
+/* axios.interceptors.request.use((req)=>{
+  let token:any = localStorage.getItem("token");
+if(token.length>0){
+  
+  axios.defaults.headers.common['Authorization'] = 'Bearer '+token;
+  return req;
+}
+  return req;
+})
+
+axios.interceptors.response.use(()=>{
+
+}) */
+interface contextInterface {
+  placesData: any;
+  setPlacesData: any;
+}
 export const placesContext = createContext<any>({});
 
 const App: React.FC = () => {
