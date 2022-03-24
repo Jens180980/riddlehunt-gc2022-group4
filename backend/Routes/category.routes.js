@@ -9,23 +9,34 @@ module.exports = (app) => {
 
   router.get(
     "/",
-    passport.authenticate("jwt", { session: false }),
-
+    // passport.authenticate("jwt",{ session: false }),
     controller.getAll
   );
   router.get(
     "/:id",
-    passport.authenticate("jwt", { session: false }),
+    // passport.authenticate("jwt", { session: false }),
     controller.getById
   );
 
   router.get("/getPlaces/:id", controller.getPlacesOfACategory);
 
-  router.post("/", scopesValidationHandler(["admin"]), controller.create);
+  router.post(
+    "/",
+    // scopesValidationHandler(["admin"]),
+    controller.create
+  );
 
-  router.put("/:id", scopesValidationHandler(["admin"]), controller.update);
+  router.put(
+    "/:id",
+    // scopesValidationHandler(["admin"]),
+    controller.update
+  );
 
-  router.delete("/:id", scopesValidationHandler(["admin"]), controller.delete);
+  router.delete(
+    "/:id",
+    // scopesValidationHandler(["admin"]),
+    controller.delete
+  );
 
   app.use("/category", router);
 };

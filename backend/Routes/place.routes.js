@@ -13,9 +13,17 @@ module.exports = (app) => {
     controller.create
   );
 
-  router.put("/:id", scopesValidationHandler(["admin"]), controller.update);
+  router.put(
+    "/:id",
+    //  scopesValidationHandler(["admin"]),
+    controller.update
+  );
 
-  router.delete("/:id", scopesValidationHandler(["admin"]), controller.delete);
+  router.delete(
+    "/:id",
+    // scopesValidationHandler(["admin"]),
+    controller.delete
+  );
 
   app.use("/place", router);
 };
