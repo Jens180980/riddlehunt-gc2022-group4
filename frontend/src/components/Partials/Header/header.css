@@ -1,8 +1,9 @@
-div {
-  margin: 0.2rem 0.5rem;
+.headerComponent {
+  padding: 0.2rem 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: #f2bc79;
 }
 
 .logo {
