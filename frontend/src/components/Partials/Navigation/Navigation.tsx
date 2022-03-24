@@ -8,7 +8,13 @@ import {
   IonBadge,
   IonRouterOutlet,
 } from "@ionic/react";
-import { busOutline, mapOutline, personCircleOutline } from "ionicons/icons";
+import {
+  busOutline,
+  homeOutline,
+  mapOutline,
+  personCircleOutline,
+  personOutline,
+} from "ionicons/icons";
 import { IonReactRouter } from "@ionic/react-router";
 import { Redirect, Route } from "react-router-dom";
 import MapPage from "../../Pages/Map/Map";
@@ -16,6 +22,9 @@ import Transport from "../../Pages/Transport/Transport";
 import Home from "../../Pages/Home/Home";
 import Profile from "../../Pages/Profile/Profile";
 import List from "../../Pages/List/List";
+import Login from "../../Pages/Login/Login";
+import SignUp from "../../Pages/SignUp/SignUp";
+
 export const Navigation: React.FC = () => {
   const navItems = [
     {
@@ -27,17 +36,17 @@ export const Navigation: React.FC = () => {
     },
     {
       key: "1",
-      tab: "profile",
-      path: "/profile",
-      icon: personCircleOutline,
-      label: "Profile",
+      tab: "home",
+      path: "/home",
+      icon: homeOutline,
+      label: "Home",
     },
     {
       key: "2",
-      tab: "transport",
-      path: "/transport",
-      icon: busOutline,
-      label: "Transport",
+      tab: "profile",
+      path: "/profile",
+      icon: personOutline,
+      label: "Profile",
     },
   ];
 
@@ -61,10 +70,10 @@ export const Navigation: React.FC = () => {
             <List />
           </Route>
           <Route exact path="/login">
-            {/* sign in is coming */}
+            <Login/>
           </Route>
           <Route exact path="/signup">
-            {/* sign up is coming */}
+            <SignUp/>
           </Route>
           <Route exact path="/">
             <Redirect to="/home" />
@@ -73,7 +82,6 @@ export const Navigation: React.FC = () => {
 
         <IonTabBar slot="bottom">
           {navItems.map((item, index) => {
-            console.log(item);
             return (
               <IonTabButton key={item.key} tab={item.tab} href={item.path}>
                 <IonIcon icon={item.icon} />

@@ -19,7 +19,7 @@ interface PropsInterface {
 const Cards: React.FC<PropsInterface> = (props) => {
   return (
     <IonCard>
-      <IonImg src={require(`${props.src}`)} />
+      <IonImg src={props.src} />
       <IonCardHeader>
         <IonCardSubtitle>{props.subtitle}</IonCardSubtitle>
         <IonCardTitle>{props.title}</IonCardTitle>

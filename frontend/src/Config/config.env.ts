@@ -1,0 +1,1 @@
+export var REACT_APP_BACKEND_HOST:string="http://localhost:5000"

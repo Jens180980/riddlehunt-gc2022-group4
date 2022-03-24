@@ -1,0 +1,12 @@
+.leaflet-container{
+    width: 100vw;
+    height: 100vh;
+}
+
+.leaflet-top{
+    visibility: hidden !important;
+}
+
+/* .leaflet-marker-icon{
+    background-image: url('dist/redIcon.png');
+}  */
