@@ -17,7 +17,7 @@ class PlaceService {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     };
     return axios.get<Place[]>(
-      "https://the-great-riddle-hunt.herokuapp.com/place",
+      REACT_APP_BACKEND_HOST + "/place",
       {
         headers: headers,
       }

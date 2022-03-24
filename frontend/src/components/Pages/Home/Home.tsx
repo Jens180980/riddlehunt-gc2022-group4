@@ -1,7 +1,7 @@
-import Cards from "../../Partials/Cards/Cards";
 import Header from "../../Partials/Header/Header";
 import { useContext } from "react";
 import { placesContext } from "../../../App";
+import List from "../List/List";
 
 const Home: React.FC = () => {
   const places = useContext(placesContext);
@@ -10,12 +10,7 @@ const Home: React.FC = () => {
   return (
     <>
       <Header title="Riddlehunt 4.0" />
-      <Cards
-        src="https://i.ibb.co/QdMYQxk/3d48a98a13dc.jpg"
-        subtitle="Restaurant"
-        title="places"
-        description="testing"
-      />
+      <List />
     </>
   );
 };
