@@ -4,6 +4,7 @@ import { placesContext } from "../../../App";
 import { IonContent } from "@ionic/react";
 import { Link } from "react-router-dom";
 import Cards from "../../Partials/Cards/Cards";
+import './Home.css'
 
 const Home: React.FC = () => {
   const places = useContext(placesContext);

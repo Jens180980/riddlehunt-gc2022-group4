@@ -47,11 +47,13 @@ const List: React.FC = () => {
       <h1>List of Routes</h1>
       {routes.length > 0 ? (
         routes.map((p: Route) => {
-          return (<Cards
+          return (
+          <Link to={`/routemap/${p.id}`}><Cards
             src={p.places.length > 0 ? p.places[p.places.length - 1].image : ""}
             subtitle={`Distance: ${p.distance_in_km} KM`}
             title={p.name}
-          />)
+          />
+          </Link>)
         })
       ) : null}
     </IonContent>

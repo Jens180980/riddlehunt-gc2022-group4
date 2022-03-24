@@ -4,11 +4,12 @@ import 'leaflet-routing-machine';
 import { MapContainer, TileLayer, Marker, Popup, useMap, useMapEvents } from 'react-leaflet';
 import '../../../../node_modules/leaflet/dist/leaflet.css'
 import '../../../../node_modules/leaflet-routing-machine/dist/leaflet-routing-machine.css';
-
+import { Route } from '../../../interfaces/Route.interface';
 import './map.css';
 import { timeEnd } from "console";
 import { timeout } from "workbox-core/_private";
 import { idCard } from "ionicons/icons";
+import RoutesService from "../../../Services/routes.service";
 
 let map: L.Map = L.map(document.createElement('div'));
 let marker: L.Marker<any>;
@@ -68,10 +69,12 @@ interface Waypoints {
     long: number,
 }
 
+
+
 let lat: number | null = null;
 let long: number | null = null;
 
-function UserLocation() {
+function UserLocation(route: Route) {
 
     map.locate({
         setView: true,//false
@@ -96,7 +99,7 @@ function UserLocation() {
         locationfound: (location) => {
             lat = location.latlng.lat;
             long = location.latlng.lng;
-            Waypoints();
+            Waypoints(route);
             try {
                 marker.removeFrom(map)
 
@@ -118,31 +121,35 @@ function UserLocation() {
     return null;
 }
 
-function Waypoints() {
-    //let ruta = 0;
-    //let coord=[];
+function Waypoints(route: Route) {
+    let coordWaypoints: Waypoints[] = [];
+    let coord = [];
+
+    if (route) {
+        route.places.forEach((place) => {
+            coord.push(L.latLng(parseFloat(place.latitude), parseFloat(place.longitude)))
+        })
+    }
+
+    //else{
+        //cord.push(L.latLng(54645,654646465)
+    //}
+
 
     // for(let c = 0; c < ruta.place; c++){
     //     coord.push(L.latLng(ruta.place.latitud, ruta.place.longitud));
     // }
 
-    let coord = [
-        L.latLng(28.1296, -15.4480),
-        L.latLng(28.13409, -15.4404),
-        L.latLng(28.1396, -15.4307),
-    ]
+    // 
+
+
 
     if (lat && long) {
         coord.unshift(L.latLng(lat, long));
     }
-
+    // Esto es un easter egg
     L.Routing.control({
         waypoints: coord,
-        // router: L.Routing.graphHopper('36587c66-f6a0-4d59-80bf-4fa2ccb9e3b3', {
-        //     urlParameters: {
-        //         vehicle: 'foot'
-        //     }
-        // }),
         routeWhileDragging: false,
         showAlternatives: true,
         lineOptions: {
@@ -192,17 +199,45 @@ function Waypoints() {
 
 }
 
-const Map: React.FC<Waypoints> = (props: Waypoints) => {
+interface PropsId {
+    id: number
+};
+
+const Map: React.FC<PropsId> = (props: PropsId) => {
+    const [id, setId] = useState(props.id | 0);
+    const [route, setRoute] = useState<Route>();
+    const routesService = new RoutesService();
+
+    useEffect(() => {
+
+        if (id != 0) {
+
+            routesService.getRouteWithPlaces(id).then((res) => {
+                console.log(id, ":::::", res, "response")
+                setRoute(res);
+            })
+        }
+    }, [])
 
     return (
         <div className="center-map">
-            <MapContainer id="mapcontainer" center={[props.lat, props.long]} zoom={16}>
+            <MapContainer id="mapcontainer" center={[0, 0]} zoom={16}>
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
-                <UserLocation />
-                <Waypoints />
+                <UserLocation
+                    id={route ? route.id : 0}
+                    name={route ? route.name : ""}
+                    time_in_hours={route ? route.time_in_hours : 0}
+                    distance_in_km={route ? route.id : 0}
+                    places={route && route.places.length > 0 ? route.places : []} />
+                <Waypoints
+                    id={route ? route.id : 0}
+                    name={route ? route.name : ""}
+                    time_in_hours={route ? route.time_in_hours : 0}
+                    distance_in_km={route ? route.id : 0}
+                    places={route && route.places.length > 0 ? route.places : []} />
             </MapContainer>
         </div>
     );

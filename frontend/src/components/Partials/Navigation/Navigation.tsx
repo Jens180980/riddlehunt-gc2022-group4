@@ -24,6 +24,7 @@ import List from "../../Pages/List/List";
 import Login from "../../Pages/Login/Login";
 import SignUp from "../../Pages/SignUp/SignUp";
 import RoutesPage from "../../Pages/Routes/Routes";
+import RouteMap from "../../Pages/List/RouteMap/RouteMap";
 
 export const Navigation: React.FC = () => {
   const navItems = [
@@ -56,6 +57,9 @@ export const Navigation: React.FC = () => {
         <IonRouterOutlet>
           <Route exact path="/map">
             <MapPage />
+          </Route>
+          <Route exact path="/routemap/:id">
+            <RouteMap />
           </Route>
           <Route exact path="/routes">
             <RoutesPage />
