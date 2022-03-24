@@ -1,1 +1,1 @@
-export var REACT_APP_BACKEND_HOST:string="http://localhost:4000"
+export var REACT_APP_BACKEND_HOST:string="https://the-great-riddle-hunt.herokuapp.com"

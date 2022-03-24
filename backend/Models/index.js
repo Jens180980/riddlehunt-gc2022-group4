@@ -30,6 +30,7 @@ modules.forEach((module) => {
   const model = module(sequelize, Sequelize);
 
   db[model.name] = model;
+  console.log(model.name);
   models.push(model);
 });
 db.sequelize = sequelize;

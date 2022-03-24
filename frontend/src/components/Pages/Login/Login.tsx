@@ -22,6 +22,7 @@ const SignIn: React.FC = () => {
       e.preventDefault();
 
       let user: User = {
+        id:0,
         email,
         password,
         name: "",
@@ -29,8 +30,10 @@ const SignIn: React.FC = () => {
       };
 
       await loginService.login(user).then((res) => {
-        if (res) {
-          localStorage.setItem("token", res);
+       
+        if (res && res.data.token) {
+          
+          localStorage.setItem("token", res.data.token);
           return history.push("/home");
         }
       });
@@ -55,7 +58,7 @@ const SignIn: React.FC = () => {
             name="email"
             onIonChange={(e) => setEmail(e.detail.value!)}
             required
-            minlength={4}
+            minlength={3}
             maxlength={100}
           ></IonInput>
         </IonItem>
@@ -80,7 +83,7 @@ const SignIn: React.FC = () => {
             type="password"
             name="password"
             required
-            minlength={5}
+            minlength={3}
             maxlength={50}
           ></IonInput>
         </IonItem>

@@ -43,7 +43,7 @@ class UserService {
   async getByEmail(email) {
     const user = User.findOne({
       where: {
-        email,
+        email:email
       },
     });
     return user;

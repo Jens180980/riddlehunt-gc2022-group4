@@ -8,6 +8,7 @@ import '../../../../node_modules/leaflet-routing-machine/dist/leaflet-routing-ma
 import './map.css';
 import { timeEnd } from "console";
 import { timeout } from "workbox-core/_private";
+import { idCard } from "ionicons/icons";
 
 let map: L.Map = L.map(document.createElement('div'));
 let marker: L.Marker<any>;
@@ -38,7 +39,7 @@ const greenIcon = new L.Icon({
     iconSize: [25, 41],
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],
-    shadowSize: [41, 41]
+    shadowSize: [41, 41],
 
 });
 
@@ -47,7 +48,7 @@ const blueIcon = new L.Icon({
     iconSize: [25, 41],
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],
-    shadowSize: [41, 41]
+    shadowSize: [41, 41],
 
 });
 
@@ -56,7 +57,7 @@ const redIcon = new L.Icon({
     iconSize: [25, 41],
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],
-    shadowSize: [41, 41]
+    shadowSize: [41, 41],
 
 });
 
@@ -105,7 +106,7 @@ function UserLocation() {
                 marker = L.marker(
                     location.latlng,
                     {
-                        icon: personIcon
+                        icon: personIcon,
                     },
                 ).addTo(map);
 
@@ -118,17 +119,24 @@ function UserLocation() {
 }
 
 function Waypoints(){
-    let count = 0;
+    //let ruta = 0;
+    //let coord=[];
+
+    // for(let c = 0; c < ruta.place; c++){
+    //     coord.push(L.latLng(ruta.place.latitud, ruta.place.longitud));
+    // }
+
     let coord=[
             L.latLng(28.1296, -15.4480),
             L.latLng(28.13409, -15.4404),
-            L.latLng(28.1396, -15.4307)
+            L.latLng(28.1396, -15.4307), 
     ]
+
     if(lat && long){
         coord.unshift(L.latLng(lat, long));
     }
 
-    L.Routing.control(/*L.extend(window.lrmConfig, */{
+    L.Routing.control({
         waypoints: coord,
         // router: L.Routing.graphHopper('36587c66-f6a0-4d59-80bf-4fa2ccb9e3b3', {
         //     urlParameters: {
@@ -154,30 +162,30 @@ function Waypoints(){
         plan: L.Routing.plan(coord, {
             createMarker: function (i, wp, nWps){
                 if (i === 0) {
-                    // here change the starting and ending icons
                     return L.marker(wp.latLng, {
-                      icon: empti
+                      icon: empti,
                     });
+                    // change starting icon
                 }else if (i === 1) {
                     return L.marker(wp.latLng, {
                         icon: greenIcon
-                    });
+                    }).bindPopup("ThisIsAmerica");
                 }
                 else if (i === nWps - 1) {
-                    // here change the starting and ending icons
+                    // change ending icon
                     return L.marker(wp.latLng, {
                         icon: redIcon 
-                    });
+                    }).bindPopup("ThisIsAmerica");
                 } else {
-                    // here change all the others
+                    // change other icons
                     return L.marker(wp.latLng, {
                         icon: blueIcon
-                    });
+                    }).bindPopup("ThisIsAmerica");
                 }
             }
-        })
-
-
+        }),
+        addWaypoints: false,
+        
     }).addTo(map);
 
     return null;
@@ -200,4 +208,3 @@ const Map: React.FC<Waypoints> = (props: Waypoints) => {
 }
 
 export default Map;
-

@@ -25,6 +25,7 @@ const SignUp: React.FC = () => {
       e.preventDefault();
 
       let user: User = {
+        id:0,
         email,
         password,
         name: "",
@@ -32,10 +33,9 @@ const SignUp: React.FC = () => {
       };
 
       await loginService.register(user).then((res) => {
-        console.log(res);
-        if (res) {
-          localStorage.setItem("token", res);
-          return history.push("/home");
+        if (res.status==201) {
+          
+          return history.push("/login");
         }
       });
     } catch (error) {
