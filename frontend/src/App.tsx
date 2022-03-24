@@ -16,7 +16,7 @@ import "@ionic/react/css/structure.css";
 import "@ionic/react/css/typography.css";
 import PlaceService from "./Services/places.service";
 
-import "./style.css";
+import "./theme/style.css";
 
 setupIonicReact();
 
