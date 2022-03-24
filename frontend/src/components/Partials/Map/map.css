@@ -10,3 +10,11 @@
 /* .leaflet-marker-icon{
     background-image: url('dist/redIcon.png');
 }  */
+
+.leaflet-popup-tip {
+    width: 0px !important;
+    height: 0px !important;
+    padding: 0px !important;
+    margin:0px auto 0 !important;
+    transform: rotate(45deg);
+  }

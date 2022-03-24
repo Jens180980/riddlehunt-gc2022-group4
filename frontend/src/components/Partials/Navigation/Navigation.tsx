@@ -8,6 +8,7 @@ import Transport from '../../Pages/Transport/Transport';
 import Home from '../../Pages/Home/Home';
 import Profile from '../../Pages/Profile/Profile';
 import List from '../../Pages/List/List';
+import "./Navigation.css";
 
 export const Navigation: React.FC = () => {
     const navItems = [
