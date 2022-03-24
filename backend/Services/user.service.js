@@ -19,7 +19,7 @@ class UserService {
         name: newUser.name,
         password: bcrypt.hashSync(newUser.password, 5),
         profile_picture: newUser.profile_picture,
-        role: "user",
+        role: "admin",
       },
     });
 
