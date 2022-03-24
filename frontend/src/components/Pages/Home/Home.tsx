@@ -4,6 +4,7 @@ import { placesContext } from "../../../App";
 import { IonContent } from "@ionic/react";
 import { Link } from "react-router-dom";
 import List from "../List/List";
+import Cards from "../../Partials/Cards/Cards";
 
 const Home: React.FC = () => {
   const places = useContext(placesContext);
@@ -24,6 +25,7 @@ const Home: React.FC = () => {
           title="Find your favorite route"
         />
       </Link>
+      <List />
     </IonContent>
   );
 };

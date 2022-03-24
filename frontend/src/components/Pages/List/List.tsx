@@ -1,5 +1,6 @@
 import { busOutline, homeOutline, mapOutline } from "ionicons/icons";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import RoutesService from '../../../Services/routes.service';
 import Cards from "../../Partials/Cards/Cards";
 
@@ -43,11 +44,11 @@ const List: React.FC = () => {
     <>
       <h1>List of Locations</h1>
       <Cards
-        src="https://i.ibb.co/QdMYQxk/3d48a98a13dc.jpg"
-        subtitle="Restaurant"
-        title="places"
-        description="testing"
-      />
+          src="https://i.ibb.co/QdMYQxk/3d48a98a13dc.jpg"
+          subtitle="Restaurant"
+          title="places"
+          description="testing"
+        />
     </>
   );
 };

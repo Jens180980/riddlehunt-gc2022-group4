@@ -13,8 +13,6 @@ class RoutesService {
         return this.RoutesService;
     }
 
-
-
     async getRouteById(id: number): Promise<any> {
         return axios.get<Route>(REACT_APP_BACKEND_HOST + "/route/" + id)
     }
