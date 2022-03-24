@@ -1,6 +1,7 @@
 import { busOutline, homeOutline, listOutline } from "ionicons/icons";
 import Map from "../../Partials/Map/Map";
 import Header from "../../Partials/Header/Header";
+import "./Map.css";
 
 const MapPage: React.FC = () => {
     const navMapItems = [
@@ -29,8 +30,8 @@ const MapPage: React.FC = () => {
 
     return (
       <>
-        <Header title={"Hola"}/>
-        <Map lat={0} long={0} />
+        <Header title={"MAP"}/>
+        <Map lat={0} long={0}/>
       </>
     );
   };

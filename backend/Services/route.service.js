@@ -27,7 +27,9 @@ class RouteService {
   }
 
   async getAll() {
-    const routes = await Route.findAll();
+    const routes = await Route.findAll({
+      include: { model: db.place },
+    });
     return routes;
   }
 

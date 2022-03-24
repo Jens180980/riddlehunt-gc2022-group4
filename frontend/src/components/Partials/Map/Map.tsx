@@ -8,6 +8,7 @@ import '../../../../node_modules/leaflet-routing-machine/dist/leaflet-routing-ma
 import './map.css';
 import { timeEnd } from "console";
 import { timeout } from "workbox-core/_private";
+import { idCard } from "ionicons/icons";
 
 let map: L.Map = L.map(document.createElement('div'));
 let marker: L.Marker<any>;
@@ -118,12 +119,19 @@ function UserLocation() {
 }
 
 function Waypoints(){
-    let count = 0;
+    //let ruta = 0;
+    //let coord=[];
+
+    // for(let c = 0; c < ruta.place; c++){
+    //     coord.push(L.latLng(ruta.place.latitud, ruta.place.longitud));
+    // }
+
     let coord=[
             L.latLng(28.1296, -15.4480),
             L.latLng(28.13409, -15.4404),
-            L.latLng(28.1396, -15.4307)
+            L.latLng(28.1396, -15.4307), 
     ]
+
     if(lat && long){
         coord.unshift(L.latLng(lat, long));
     }
@@ -161,23 +169,23 @@ function Waypoints(){
                 }else if (i === 1) {
                     return L.marker(wp.latLng, {
                         icon: greenIcon
-                    });
+                    }).bindPopup("ThisIsAmerica");
                 }
                 else if (i === nWps - 1) {
                     // change ending icon
                     return L.marker(wp.latLng, {
                         icon: redIcon 
-                    });
+                    }).bindPopup("ThisIsAmerica");
                 } else {
                     // change other icons
                     return L.marker(wp.latLng, {
                         icon: blueIcon
-                    });
+                    }).bindPopup("ThisIsAmerica");
                 }
             }
-        })
-
-
+        }),
+        addWaypoints: false,
+        
     }).addTo(map);
 
     return null;
@@ -200,4 +208,3 @@ const Map: React.FC<Waypoints> = (props: Waypoints) => {
 }
 
 export default Map;
-
