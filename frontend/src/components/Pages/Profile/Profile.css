@@ -1,0 +1,24 @@
+#ProfileCircle{
+    height: 55vh;
+    width: 140%;
+    margin-top: -15vh;
+    background-color: #F2BC79;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: -9vh;
+}
+
+#ProfileName{
+    text-align: center;
+    margin-top: -210px;
+}
+
+#ProfileName img{
+    width: 40%;
+}
+
+#ProfileList{
+    bottom: 0;
+    position: absolute;
+    width: 90%;
+}
