@@ -24,6 +24,7 @@ import List from "../../Pages/List/List";
 import Login from "../../Pages/Login/Login";
 import SignUp from "../../Pages/SignUp/SignUp";
 import RoutesPage from "../../Pages/Routes/Routes";
+import "./Navigation.css";
 
 export const Navigation: React.FC = () => {
   const navItems = [
@@ -83,7 +84,12 @@ export const Navigation: React.FC = () => {
         <IonTabBar slot="bottom">
           {navItems.map((item, index) => {
             return (
-              <IonTabButton key={item.key} tab={item.tab} href={item.path}>
+              <IonTabButton
+                className="navigationBar"
+                key={item.key}
+                tab={item.tab}
+                href={item.path}
+              >
                 <IonIcon icon={item.icon} />
                 <IonLabel>{item.label}</IonLabel>
               </IonTabButton>
