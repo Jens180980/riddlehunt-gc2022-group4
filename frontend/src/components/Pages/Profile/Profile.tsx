@@ -9,8 +9,6 @@ export const Profile: React.FC = () => {
   return (
     <>
       <IonContent>
-      {/* <Header title="Riddlehunt 4.0" /> */}
-
         <div id="ProfileCircle"></div>
         <section id="ProfileName">
           <img src="https://i.ibb.co/ZJvLSBD/logo1.png" alt="logo, temporary picture" />
