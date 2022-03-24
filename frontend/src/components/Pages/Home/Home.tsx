@@ -11,7 +11,7 @@ const Home: React.FC = () => {
 
   return (
     <IonContent>
-      <Header title="Riddlehunt 4.0" />
+      <Header title="Riddlehunt 2022" />
       <Link to={"/list"}>
         <Cards
           src="https://i.ibb.co/Y2wBLMn/72f8bf482741.jpg"
