@@ -1,9 +1,9 @@
-import Cards from "../../Partials/Cards/Cards";
 import Header from "../../Partials/Header/Header";
 import { useContext } from "react";
 import { placesContext } from "../../../App";
 import { IonContent } from "@ionic/react";
 import { Link } from "react-router-dom";
+import List from "../List/List";
 
 const Home: React.FC = () => {
   const places = useContext(placesContext);

@@ -28,9 +28,7 @@ exports.getOneWithPlaces = async (req, res) => {
   }
 
   try {
-    const route = await Route.findByPk(req.params.id, {
-      include: { model: db.place },
-    });
+    const route = await routeService.getOneWithPlaces();
     res.send(route);
   } catch (error) {
     res
