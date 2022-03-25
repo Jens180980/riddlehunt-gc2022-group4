@@ -123,32 +123,28 @@ function UserLocation(route: Route) {
 
 function Waypoints(route: Route) {
     let coordWaypoints: Waypoints[] = [];
+    // let coord = [
+    //     L.latLng(28.1296, -15.4480),
+    //     L.latLng(28.13409, -15.4404),
+    //     L.latLng(28.1396, -15.4307),
+    // ];
     let coord = [];
 
     if (route) {
         route.places.forEach((place) => {
-            coord.push(L.latLng(parseFloat(place.latitude), parseFloat(place.longitude)))
+            console.log(place);
+            coord.push(L.latLng(parseFloat(place.longitude), parseFloat(place.latitude)))
         })
     }
-
-    //else{
-        //cord.push(L.latLng(54645,654646465)
-    //}
-
-
-    // for(let c = 0; c < ruta.place; c++){
-    //     coord.push(L.latLng(ruta.place.latitud, ruta.place.longitud));
-    // }
-
-    // 
-
-
 
     if (lat && long) {
         coord.unshift(L.latLng(lat, long));
     }
-    // Esto es un easter egg
+
+    console.log(coord);
+
     L.Routing.control({
+
         waypoints: coord,
         routeWhileDragging: false,
         showAlternatives: true,
@@ -204,17 +200,26 @@ interface PropsId {
 };
 
 const Map: React.FC<PropsId> = (props: PropsId) => {
-    const [id, setId] = useState(props.id | 0);
+    const [id, setId] = useState(0);
     const [route, setRoute] = useState<Route>();
     const routesService = new RoutesService();
 
     useEffect(() => {
 
-        if (id != 0) {
+        if (props.id != 0) {
 
-            routesService.getRouteWithPlaces(id).then((res) => {
-                console.log(id, ":::::", res, "response")
-                setRoute(res);
+            // routesService.getRouteWithPlaces(id).then((res) => {
+            //     console.log(id, ":::::", res, "response")
+            //     setRoute(res.data);
+            // })
+            routesService.getRoutes().then((res) => {
+                console.log(props.id, ":::::", res, "response")
+                for (let r of res.data) {
+                    if (r.id === props.id) {
+                        setRoute(r);
+                        break;
+                    }
+                }
             })
         }
     }, [])
