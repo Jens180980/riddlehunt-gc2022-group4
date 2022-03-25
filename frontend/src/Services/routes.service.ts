@@ -22,7 +22,7 @@ class RoutesService {
     }
 
     async getRoutes(): Promise<any> {
-        return axios.get<Route[]>(REACT_APP_BACKEND_HOST + "/route");
+        return axios.get<any>(REACT_APP_BACKEND_HOST + "/route");
     }
 
     async createRoute(route: Route): Promise<any> {

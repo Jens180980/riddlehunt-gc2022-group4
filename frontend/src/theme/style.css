@@ -1,0 +1,13 @@
+a {
+  text-decoration: none;
+}
+ion-content {
+  /* --offset-bottom: auto !important; */
+  --overflow: hidden;
+  overflow: auto;
+  scrollbar-width: none; 
+}
+
+ion-content::-webkit-scrollbar {
+  display: none;
+}

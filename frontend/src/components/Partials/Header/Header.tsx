@@ -8,7 +8,7 @@ interface PropsInterface {
 }
 
 const Header: React.FC<PropsInterface> = (props) => (
-  <div>
+  <div className="headerComponent">
     <IonImg className="logo" src="https://i.ibb.co/ZJvLSBD/logo1.png" />
     <h2>{props.title}</h2>
   </div>

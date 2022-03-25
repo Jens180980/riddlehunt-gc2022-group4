@@ -1,0 +1,15 @@
+.card-content-md{
+  display: none;
+}
+
+.MuiPaper-root{
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+/* .ion-inherit-color{
+  margin-top: -100px; 
+  color:black; 
+  background-color: white; 
+} */
