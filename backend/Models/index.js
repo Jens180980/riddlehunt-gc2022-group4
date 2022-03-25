@@ -24,6 +24,7 @@ const modules = [
   require("./user_places.model"),
   require("./user_routes.model"),
   require("./user.model"),
+  require("./place_category.model"),
 ];
 
 modules.forEach((module) => {

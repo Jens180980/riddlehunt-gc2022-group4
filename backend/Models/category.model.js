@@ -14,7 +14,7 @@ module.exports = (sequelize, Sequelize) => {
 
   Category.associate = (models) => {
     Category.belongsToMany(models.place, {
-      through: "place_category",
+      through: models.place_category,
     });
   };
 
